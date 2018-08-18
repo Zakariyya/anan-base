@@ -1,8 +1,8 @@
-package com.urundp.corona.file.enums;
+package com.anan.sb.springboot.filemanage.enums;
 
 /**
- * @author yaokunyi
- * Created by yaokunyi on 2018/8/8.
+ * @author anan
+ * Created by anan on 2018/8/8.
  */
 public interface CodeEnum {
 

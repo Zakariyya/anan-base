@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
@@ -15,7 +14,7 @@ import java.sql.Timestamp;
 import java.text.DecimalFormat;
 
 /**
- * @author yaokunyi
+ * @author anan
  * Created on 2018/8/15.
  */
 public class FileUtil {
