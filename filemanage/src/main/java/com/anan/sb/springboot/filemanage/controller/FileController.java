@@ -6,9 +6,9 @@ import com.anan.sb.springboot.filemanage.form.FileForm;
 import com.anan.sb.springboot.filemanage.orm.File;
 import com.anan.sb.springboot.filemanage.orm.core.ResponseResult;
 import com.anan.sb.springboot.filemanage.service.FileService;
+import com.anan.sb.springboot.filemanage.util.FileUtil;
 import com.anan.sb.springboot.filemanage.util.ResultVOUtil;
 import com.anan.sb.springboot.filemanage.vo.ResultVO;
-import com.urundp.corona.file.util.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,7 +73,7 @@ public class FileController {
     log.info("======="+data);
     val save = fileService.save(data);
     return ResultVOUtil.success(save);
-    return ResultVOUtil.success();
+//    return ResultVOUtil.success();
 
   }
 
@@ -85,9 +85,9 @@ public class FileController {
    */
   @RequestMapping(value = "save", method = RequestMethod.PUT, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
   public ResultVO update(@RequestBody File data){
-    val save = fileService.save(data);
-    return ResultVOUtil.success(save);
-
+//    val save = fileService.save(data);
+//    return ResultVOUtil.success(save);
+    return null;
   }
 
 
@@ -123,8 +123,9 @@ public class FileController {
       data.setSize(file.length());
       data.setFilePath(file.getPath());
       data.setName(file.getName());
-      val save  = fileService.save(data);
-      return ResultVOUtil.success(save);
+//      val save  = fileService.save(data);
+//      return ResultVOUtil.success(save);
+      return null;
     } catch (FileNotFoundException e) {
       e.printStackTrace();
       log.info("==== 文件上传出现异常：FileNotFoundException：：位置：HFileController.upload/POST  ===");

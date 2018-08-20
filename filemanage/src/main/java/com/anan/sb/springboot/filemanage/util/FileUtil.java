@@ -1,17 +1,22 @@
-package com.urundp.corona.file.util;
+package com.anan.sb.springboot.filemanage.util;
 
 import org.springframework.web.multipart.MultipartFile;
+import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPReply;
+import sun.net.ftp.FtpClient;
+import sun.net.ftp.FtpProtocolException;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.math.BigInteger;
+import java.net.InetSocketAddress;
+import java.net.SocketAddress;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.security.MessageDigest;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author anan
@@ -19,6 +24,12 @@ import java.text.DecimalFormat;
  */
 public class FileUtil {
 
+
+  /*************************************************
+   *******                                  ********
+   *******    upload / download by server   ********
+   *******                                  ********
+   *************************************************/
 
   /**
    * 上传文件到服务器
@@ -105,8 +116,6 @@ public class FileUtil {
     }
     return strFileSize;
   }
-
-
 
 
 
