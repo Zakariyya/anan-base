@@ -72,7 +72,6 @@ public class FileController {
    */
   @PostMapping("/save")
   public ResultVO save(@Valid FileForm data, BindingResult bindingResult){
-
     if (bindingResult.hasErrors()) {
       log.error("【文件管理】参数不正确, FileForm={}", data);
       throw new FileException(ResultEnum.PARAM_ERROR.getCode(),
@@ -99,6 +98,8 @@ public class FileController {
     ResponseResult result = new ResponseResult();
     data.setId(id);
     val save = fileService.update(data, result);
+    if(result.hasErrors())
+      return ResultVOUtil.error(ResultEnum.FAILURE.getCode(), result.getMessage());
     return ResultVOUtil.success(save);
 
   }
@@ -137,16 +138,14 @@ public class FileController {
       data.setFilePath(file.getPath());
       data.setName(file.getName());
 
-      System.out.println("======"+data);
-
       val save  = fileService.save(data);
       return ResultVOUtil.success(save);
+
     } catch (FileNotFoundException e) {
       e.printStackTrace();
-      log.info("==== 文件上传出现异常：FileNotFoundException：：位置：HFileController.upload/POST  ===");
+      log.info("【文件管理】文件上传出现异常：FileNotFoundException：：位置：HFileController.upload/POST ");
       return ResultVOUtil.error(ResultEnum.FILE_UPLOAD_EXCEPTION.getCode(), ResultEnum.FILE_UPLOAD_EXCEPTION.getMessage());
     }
-
   }
 
   /**
@@ -173,7 +172,7 @@ public class FileController {
               .body(new InputStreamResource(file.getInputStream()));
     } catch (IOException e) {
       e.printStackTrace();
-      log.info("==== 文件下载出现异常：IOException：：位置：HFileController.download/GET  ===");
+      log.info("【文件管理】文件下载出现异常：IOException：：位置：HFileController.download/GET ");
     }
     return null;
   }

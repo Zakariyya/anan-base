@@ -56,6 +56,7 @@ public class FileServiceImpl implements FileService {
 
     File data = findOne(form.getId());
     if (null == data) {
+      result.addError("更新失败，无该文件");
       return null;
     }
     if(null != form.getParentId()){
@@ -63,7 +64,6 @@ public class FileServiceImpl implements FileService {
     }
     data.setRemark(form.getRemark());
     data.setName(form.getName());
-
     return fileRepository.save(data);
   }
 

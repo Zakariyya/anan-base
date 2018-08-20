@@ -16,7 +16,8 @@ public class ResultVOUtil {
     ResultVO resultVO = new ResultVO();
 //  Gson G = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 //  Gson G = new GsonBuilder().setDateFormat(DateFormat.Long).create();
-    resultVO.setData(new Gson().toJson(object));
+//    resultVO.setData(new Gson().toJson(object));
+    resultVO.setData(object);
     resultVO.setCode(0);
     resultVO.setMsg("成功");
     return resultVO;
