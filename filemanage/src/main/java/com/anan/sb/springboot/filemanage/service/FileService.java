@@ -1,9 +1,12 @@
 package com.anan.sb.springboot.filemanage.service;
 
+import com.anan.sb.springboot.filemanage.form.FileForm;
 import com.anan.sb.springboot.filemanage.orm.File;
+import com.anan.sb.springboot.filemanage.orm.core.ResponseResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  * @author anan
@@ -16,16 +19,16 @@ public interface FileService {
    * @param data
    * @return
    */
-  File save(File data);
+  File save(FileForm data);
 
   /**
    *
    * @param id
    * @return
    */
-  String delete(String id);
+  void delete(String id,ResponseResult result);
 
-  String delete(String id, Boolean force);
+  void delete(String id, Boolean force, ResponseResult result);
 
   List<File> findAll();
 

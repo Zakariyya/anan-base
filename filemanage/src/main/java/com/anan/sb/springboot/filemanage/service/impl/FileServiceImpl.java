@@ -1,12 +1,14 @@
 package com.anan.sb.springboot.filemanage.service.impl;
 
-import com.anan.sb.springboot.filemanage.enums.ResultEnum;
 import com.anan.sb.springboot.filemanage.exception.FileException;
+import com.anan.sb.springboot.filemanage.form.FileForm;
 import com.anan.sb.springboot.filemanage.orm.File;
+import com.anan.sb.springboot.filemanage.orm.core.ResponseResult;
 import com.anan.sb.springboot.filemanage.repository.FileRepository;
 import com.anan.sb.springboot.filemanage.service.FileService;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,39 +38,40 @@ public class FileServiceImpl implements FileService {
    * @return File
    */
   @Override
-  public File save(File data) {
+  public File save(FileForm data) {
     return fileRepository.save(data);
   }
 
   /**
    * 如果出现parent引用，则不允许删除
    * @param id [1,2,3,4.5]
-   * @return
    */
   @Override
-  public String delete(String id) {
+  public void delete(String id, ResponseResult result) {
     String[] ids = id.split(",");
-    String message = "";
     //做循环删除，若文件删除失败报出异常直接 略过处理，不做回滚
     for (String sid : ids) {
       try{
         fileRepository.deleteById(Integer.parseInt(sid));
       }catch (FileException e){
-        message = ResultEnum.FILE_DELETE_SECTION.getMessage();
+        val findOne = fileRepository.getOne(Integer.parseInt(sid));
+        result.addMessage("文件名为"+findOne.getName()+"删除失败");
       }
     }
-    return message;
   }
 
   /**
    * 强制删除，这里做递归查询删除
    * @param id [1,2,3,4.5]
    * @param force 是否强制删除 true/false
-   * @return
    */
   @Override
-  public String delete(String id, Boolean force) {
-    return null;
+  public void delete(String id, Boolean force,ResponseResult result) {
+    if(force)
+      //TODO 强制删除
+      log.info("delete -f :"+id);
+    else
+      delete(id,result);
   }
 
   @Override

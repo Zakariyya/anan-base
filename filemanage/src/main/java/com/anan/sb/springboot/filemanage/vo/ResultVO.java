@@ -12,14 +12,11 @@ import java.io.Serializable;
 @Data
 public class ResultVO<T> implements Serializable {
 
-    private static final long serialVersionUID = -1254223930581160279L;
-
-    /** 状态码. */
-    private Integer code;
-
-    /** 提示信息. */
-    private String msg;
-
-    /** 具体内容. */
-    private T data;
+  private static final long serialVersionUID = -1254223930581160279L;
+  /** 状态码. */
+  private Integer code;
+  /** 提示信息. */
+  private String msg;
+  /** 具体内容. */
+  private T data;
 }

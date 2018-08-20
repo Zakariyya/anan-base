@@ -1,11 +1,13 @@
 package com.anan.sb.springboot.filemanage.orm;
 
 import com.anan.sb.springboot.filemanage.orm.core.DictOption;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -59,7 +61,7 @@ public class File implements Serializable {
 
   /** 文件类型 读取字典表，如果字典表中没有返回异常 */
   @JoinColumn(name="file_file_type")
-  @ManyToOne(cascade = CascadeType.REFRESH)
+  @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
   @SerializedName(value = "fileType",alternate = {"file_type"})
   private DictOption fileType;
 
@@ -77,6 +79,8 @@ public class File implements Serializable {
   @SerializedName(value = "updateTime",alternate = {"update_time"})
   private Timestamp updateTime;
 
-
+  @JsonIgnore
+  @Transient
+  private MultipartFile mulFile;
 
 }
