@@ -3,8 +3,10 @@ package com.anan.sb.springboot.filemanage.service.impl;
 import com.anan.sb.springboot.filemanage.exception.FileException;
 import com.anan.sb.springboot.filemanage.form.FileForm;
 import com.anan.sb.springboot.filemanage.orm.File;
+import com.anan.sb.springboot.filemanage.orm.core.DictOption;
 import com.anan.sb.springboot.filemanage.orm.core.ResponseResult;
 import com.anan.sb.springboot.filemanage.repository.FileRepository;
+import com.anan.sb.springboot.filemanage.repository.core.DictOptionRepository;
 import com.anan.sb.springboot.filemanage.service.FileService;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -26,19 +28,42 @@ public class FileServiceImpl implements FileService {
 
   @Autowired
   private FileRepository fileRepository ;
-//  private FileRepository fileRepository ;
 
-//  @Autowired
-//  public FileServiceImpl(FileRepository fileRepository) {
-//    this.fileRepository = fileRepository;
-//  }
+  @Autowired
+  private DictOptionRepository dictOptionRepository;
 
-  /**
-   * @param data File
+  /** @deprecated save
+   * @param form FileForm
    * @return File
    */
   @Override
-  public File save(FileForm data) {
+  public File save(FileForm form) {
+    File data = new File();
+
+    DictOption fileType = dictOptionRepository.getOne(form.getFileTypeId());
+    data.setFileType(fileType);
+    if (null != form.getParentId()) {
+      data.setParent(findOne(form.getParentId()));
+    }
+    data.setName(form.getName());
+    data.setRemark(form.getName());
+
+    return fileRepository.save(data);
+  }
+
+  @Override
+  public File update(FileForm form, ResponseResult result) {
+
+    File data = findOne(form.getId());
+    if (null == data) {
+      return null;
+    }
+    if(null != form.getParentId()){
+      data.setParent(findOne(form.getParentId()));
+    }
+    data.setRemark(form.getRemark());
+    data.setName(form.getName());
+
     return fileRepository.save(data);
   }
 

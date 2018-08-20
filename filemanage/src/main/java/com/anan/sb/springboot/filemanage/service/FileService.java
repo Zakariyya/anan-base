@@ -21,6 +21,8 @@ public interface FileService {
    */
   File save(FileForm data);
 
+  File update(FileForm data,ResponseResult result);
+
   /**
    *
    * @param id

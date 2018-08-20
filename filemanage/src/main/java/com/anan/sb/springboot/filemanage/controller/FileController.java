@@ -2,6 +2,7 @@ package com.anan.sb.springboot.filemanage.controller;
 
 import com.anan.sb.springboot.filemanage.config.FileConfig;
 import com.anan.sb.springboot.filemanage.enums.ResultEnum;
+import com.anan.sb.springboot.filemanage.exception.FileException;
 import com.anan.sb.springboot.filemanage.form.FileForm;
 import com.anan.sb.springboot.filemanage.orm.File;
 import com.anan.sb.springboot.filemanage.orm.core.ResponseResult;
@@ -19,8 +20,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -67,13 +70,16 @@ public class FileController {
    * @param data :File pojo
    * @return 返回结果集
    */
-  @RequestMapping(value = "save", method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
-  public ResultVO save(@RequestBody FileForm data){
+  @PostMapping("/save")
+  public ResultVO save(@Valid FileForm data, BindingResult bindingResult){
 
-    log.info("======="+data);
+    if (bindingResult.hasErrors()) {
+      log.error("【文件管理】参数不正确, FileForm={}", data);
+      throw new FileException(ResultEnum.PARAM_ERROR.getCode(),
+              bindingResult.getFieldError().getDefaultMessage());
+    }
     val save = fileService.save(data);
     return ResultVOUtil.success(save);
-//    return ResultVOUtil.success();
 
   }
 
@@ -83,11 +89,18 @@ public class FileController {
    * @param data :File pojo
    * @return 返回结果集
    */
-  @RequestMapping(value = "save", method = RequestMethod.PUT, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
-  public ResultVO update(@RequestBody File data){
-//    val save = fileService.save(data);
-//    return ResultVOUtil.success(save);
-    return null;
+  @PutMapping("/save/{id}")
+  public ResultVO update(@Valid FileForm data, @PathVariable("id") Integer id, BindingResult bindingResult){
+    if (bindingResult.hasErrors() || null != data.getFileTypeId()) {
+      log.error("【文件管理】参数不正确, FileForm={}", data);
+      throw new FileException(ResultEnum.PARAM_ERROR.getCode(),
+              bindingResult.getFieldError().getDefaultMessage());
+    }
+    ResponseResult result = new ResponseResult();
+    data.setId(id);
+    val save = fileService.update(data, result);
+    return ResultVOUtil.success(save);
+
   }
 
 
@@ -115,7 +128,7 @@ public class FileController {
    */
   @ResponseBody
   @RequestMapping(value = "/io", method = RequestMethod.PUT, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
-  public ResultVO upload(@RequestBody File data){
+  public ResultVO upload(@RequestBody FileForm data){
     try {
       java.io.File file = FileUtil.uploadFile(data.getMulFile(), fileConfig.getUploadPath());
 
@@ -123,9 +136,11 @@ public class FileController {
       data.setSize(file.length());
       data.setFilePath(file.getPath());
       data.setName(file.getName());
-//      val save  = fileService.save(data);
-//      return ResultVOUtil.success(save);
-      return null;
+
+      System.out.println("======"+data);
+
+      val save  = fileService.save(data);
+      return ResultVOUtil.success(save);
     } catch (FileNotFoundException e) {
       e.printStackTrace();
       log.info("==== 文件上传出现异常：FileNotFoundException：：位置：HFileController.upload/POST  ===");

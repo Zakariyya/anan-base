@@ -2,6 +2,9 @@ package com.anan.sb.springboot.filemanage.form;
 
 import com.anan.sb.springboot.filemanage.orm.File;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.validation.constraints.NotBlank;
 
 /**
  * @author anan
@@ -10,11 +13,19 @@ import lombok.Data;
 @Data
 public class FileForm extends File {
 
+  //不做参数传递
   private Integer id;
 
-  private String name;//文件夹名称
+  @NotBlank(message = "名称必填")
+  private String name;//文件,文件名称
+
   private Integer parentId;
+
+  @NotBlank(message = "类型必填")
   private Integer fileTypeId;
+
   private String remark;
+
+  private MultipartFile multipartFile;
 
 }
