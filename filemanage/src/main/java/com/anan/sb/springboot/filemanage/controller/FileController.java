@@ -10,6 +10,7 @@ import com.anan.sb.springboot.filemanage.service.FileService;
 import com.anan.sb.springboot.filemanage.util.FileUtil;
 import com.anan.sb.springboot.filemanage.util.ResultVOUtil;
 import com.anan.sb.springboot.filemanage.vo.ResultVO;
+import javafx.application.Application;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.print.attribute.standard.Media;
 import javax.validation.Valid;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -70,8 +72,9 @@ public class FileController {
    * @param data :File pojo
    * @return 返回结果集
    */
-  @PostMapping("/save")
-  public ResultVO save(@Valid FileForm data, BindingResult bindingResult){
+  @ResponseBody
+  @PostMapping(value = "/save",produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResultVO save(@Valid @RequestBody FileForm data, BindingResult bindingResult){
     if (bindingResult.hasErrors()) {
       log.error("【文件管理】参数不正确, FileForm={}", data);
       throw new FileException(ResultEnum.PARAM_ERROR.getCode(),

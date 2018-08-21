@@ -106,13 +106,19 @@ CREATE TABLE `file_file` (
   `remark` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`),
   UNIQUE KEY `md5` (`md5`) COMMENT 'md5唯一值，减少重复文件上传次数'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 /*Data for the table `file_file` */
 
 insert  into `file_file`(`id`,`name`,`parent_id`,`file_path`,`size`,`md5`,`file_file_type`,`create_time`,`update_time`,`remark`) values 
 (1,'testFile',NULL,'aaa',1,'1111','12','2018-08-19 02:28:35','2018-08-19 02:30:28',NULL),
-(2,'ttt',1,'qqqq',22,'22','12','2018-08-19 02:29:58','2018-08-19 02:30:29',NULL);
+(2,'ttt',1,'qqqq',22,'22','12','2018-08-19 02:29:58','2018-08-19 02:30:29',NULL),
+(3,'文件夹',NULL,NULL,NULL,NULL,'1','2018-08-21 00:19:21','2018-08-21 00:19:21','文件夹'),
+(4,'文件夹',NULL,NULL,NULL,NULL,'1','2018-08-21 00:20:07','2018-08-21 00:20:07','文件夹'),
+(5,'文件夹',NULL,NULL,NULL,NULL,'1','2018-08-21 00:22:01','2018-08-21 00:22:01','文件夹'),
+(6,'文件夹',NULL,NULL,NULL,NULL,'1','2018-08-21 00:25:01','2018-08-21 00:25:01','文件夹'),
+(7,'文件夹',NULL,NULL,NULL,NULL,'1','2018-08-21 00:27:31','2018-08-21 00:27:31','文件夹'),
+(8,'文件夹',NULL,NULL,NULL,NULL,'1','2018-08-21 08:36:46','2018-08-21 08:36:46','文件夹');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
