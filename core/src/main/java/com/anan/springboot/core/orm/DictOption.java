@@ -1,23 +1,24 @@
 package com.anan.springboot.core.orm;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author anan
  * Create on 2018/8/19
  */
-@Table(name = "dict_option")
-@Entity
+@Entity(name = "dict_option")
 @Data
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class DictOption {
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class DictOption implements Serializable, Comparable<DictOption>  {
+
+  private static final long serialVersionUID = 8632165618570176042L;
 
   @Id
   @Column(name="id")
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @GeneratedValue(strategy= GenerationType.IDENTITY)
   private  Integer  id;
   /**
    * 字典类型
@@ -68,4 +69,8 @@ public class DictOption {
   private Integer  editable;
 
 
+  @Override
+  public int compareTo(DictOption o) {
+    return Integer.compare(this.id, o.id);
+  }
 }

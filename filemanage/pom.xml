@@ -80,7 +80,7 @@
             <groupId>com.anan.springboot</groupId>
             <artifactId>core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
+            <!--<scope>runtime</scope>-->
         </dependency>
 
 

@@ -77,7 +77,9 @@
     </dependencyManagement>
 
     <modules>
+        <module>core</module>
         <module>filemanage</module>
+        <module>comment</module>
     </modules>
 
     <build>
