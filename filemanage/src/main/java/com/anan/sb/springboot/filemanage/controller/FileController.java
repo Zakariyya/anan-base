@@ -24,7 +24,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.attribute.standard.Media;
 import javax.validation.Valid;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -37,7 +36,7 @@ import java.util.Map;
  * Created on 2018/8/8.
  */
 @RestController
-@RequestMapping("/file")
+@RequestMapping("/filemanager")
 @Slf4j
 public class FileController {
 
@@ -51,7 +50,7 @@ public class FileController {
    * 返回所有列表
    * @return 返回结果集
    */
-  @GetMapping("/find")
+  @GetMapping("/file")
   public ResultVO findAll(){
     List<File> all = fileService.findAll();
     return ResultVOUtil.success(all);
@@ -62,7 +61,7 @@ public class FileController {
    * @param id 主键
    * @return 返回结果集
    */
-  @GetMapping("/find/{id}")
+  @GetMapping("/file/{id}")
   public ResultVO findOne(@PathVariable("id") Integer id){
     return ResultVOUtil.success(fileService.findOne(id));
   }
@@ -73,15 +72,15 @@ public class FileController {
    * @return 返回结果集
    */
   @ResponseBody
-  @PostMapping(value = "/save",produces = MediaType.APPLICATION_JSON_VALUE)
+  @PostMapping(value = "/file",produces = MediaType.APPLICATION_JSON_VALUE)
   public ResultVO save(@Valid @RequestBody FileForm data, BindingResult bindingResult){
     if (bindingResult.hasErrors()) {
       log.error("【文件管理】参数不正确, FileForm={}", data);
       throw new FileException(ResultEnum.PARAM_ERROR.getCode(),
               bindingResult.getFieldError().getDefaultMessage());
     }
-    val save = fileService.save(data);
-    return ResultVOUtil.success(save);
+    fileService.save(data);
+    return ResultVOUtil.success();
 
   }
 
@@ -91,33 +90,32 @@ public class FileController {
    * @param data :File pojo
    * @return 返回结果集
    */
-  @PutMapping("/save/{id}")
+  @PutMapping("/file/{id}")
   public ResultVO update(@Valid @RequestBody FileForm data, @PathVariable("id") Integer id, BindingResult bindingResult){
-    if (bindingResult.hasErrors() || null != data.getFileTypeId()) {
+    if (bindingResult.hasErrors() || null == data.getFileTypeId()) {
       log.error("【文件管理】参数不正确, FileForm={}", data);
       throw new FileException(ResultEnum.PARAM_ERROR.getCode(),
               bindingResult.getFieldError().getDefaultMessage());
     }
     ResponseResult result = new ResponseResult();
     data.setId(id);
-    val save = fileService.update(data, result);
+    fileService.update(data, result);
     if(result.hasErrors())
       return ResultVOUtil.error(ResultEnum.FAILURE.getCode(), result.getMessage());
-    return ResultVOUtil.success(save);
+    return ResultVOUtil.success();
 
   }
-
 
 
   /**
    * 删除/批量删除
    * @param id // @RequestBody Map<String,String> param {"id":"1,2,3,4,5"}
-   *           // @PathVariable String id :"1,2,3,4,5"
+   *           // @PathVariable String id :"1,2,3,4,5", force: 1/true/0/false
    * @return 返回结果集
    */
   @ResponseBody
-  @RequestMapping(value = "/delete/{id}/{force}", method = RequestMethod.POST)
-  public ResultVO batchApply(@PathVariable String id, @PathVariable(required = false) boolean force) {
+  @RequestMapping(value = "/file/{id}/{force}", method = RequestMethod.DELETE)
+  public ResultVO delete(@PathVariable("id") String id, @PathVariable("force") boolean force) {
     ResponseResult result = new ResponseResult();
     fileService.delete(id, force,result);
     if(result.hasMessages())
@@ -131,7 +129,7 @@ public class FileController {
    * @return 返回结果集
    */
   @ResponseBody
-  @RequestMapping(value = "/io", method = RequestMethod.PUT, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
+  @PostMapping(value = "/file/io",produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
   public ResultVO upload(@RequestBody FileForm data){
     try {
       java.io.File file = FileUtil.uploadFile(data.getMulFile(), fileConfig.getUploadPath());
@@ -142,7 +140,7 @@ public class FileController {
       data.setName(file.getName());
 
       val save  = fileService.save(data);
-      return ResultVOUtil.success(save);
+      return ResultVOUtil.success();
 
     } catch (FileNotFoundException e) {
       e.printStackTrace();
@@ -155,7 +153,7 @@ public class FileController {
    * 提供文件下载
    * @return 返回结果集
    */
-  @RequestMapping(value = "/io/{id}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
+  @RequestMapping(value = "/file/io/{id}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
   public ResponseEntity<InputStreamResource> download(@PathVariable("id") Integer id) throws Exception {
 
     val filePath =  fileService.findOne(id).getFilePath();

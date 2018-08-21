@@ -10,8 +10,10 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import javax.validation.constraints.Null;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * 文件
@@ -72,15 +74,30 @@ public class File implements Serializable {
   /** 创建时间 */
   @Column(name="create_time")
   @SerializedName(value = "createTime",alternate = {"create_time"})
-  private Timestamp createTime;
+  private Date createTime;
 
   /** 更新时间 */
   @Column(name="update_time")
   @SerializedName(value = "updateTime",alternate = {"update_time"})
-  private Timestamp updateTime;
+  private Date updateTime;
 
   @JsonIgnore
   @Transient
   private MultipartFile mulFile;
 
+
+  public Long getCreateTime() {
+    return createTime.getTime();
+  }
+
+  public Long getUpdateTime() {
+    return updateTime.getTime();
+  }
+
+  public File() {
+  }
+
+  public File(Integer id) {
+    this.id = id;
+  }
 }

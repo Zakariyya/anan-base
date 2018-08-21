@@ -8,12 +8,15 @@ import com.anan.sb.springboot.filemanage.orm.core.ResponseResult;
 import com.anan.sb.springboot.filemanage.repository.FileRepository;
 import com.anan.sb.springboot.filemanage.repository.core.DictOptionRepository;
 import com.anan.sb.springboot.filemanage.service.FileService;
+import com.fasterxml.jackson.databind.exc.InvalidDefinitionException;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -58,12 +61,16 @@ public class FileServiceImpl implements FileService {
     if (null == data) {
       result.addError("更新失败，无该文件");
       return null;
+    }else if(form.getParentId() == form.getId()){
+      result.addError("更新失败，你想多了，自己不能做自己的爸爸");
+      return null;
     }
     if(null != form.getParentId()){
       data.setParent(findOne(form.getParentId()));
     }
     data.setRemark(form.getRemark());
     data.setName(form.getName());
+
     return fileRepository.save(data);
   }
 
@@ -77,10 +84,12 @@ public class FileServiceImpl implements FileService {
     //做循环删除，若文件删除失败报出异常直接 略过处理，不做回滚
     for (String sid : ids) {
       try{
-        fileRepository.deleteById(Integer.parseInt(sid));
+        if(fileRepository.findAllByParent(new File(Integer.parseInt(sid))).size() == 0){
+          fileRepository.deleteById(Integer.parseInt(sid));
+        }
+        result.addMessage("文件夹名为"+fileRepository.getOne(Integer.parseInt(sid)).getName()+"，存在下级，删除失败");
       }catch (FileException e){
-        val findOne = fileRepository.getOne(Integer.parseInt(sid));
-        result.addMessage("文件名为"+findOne.getName()+"删除失败");
+        result.addMessage("文件名为"+fileRepository.getOne(Integer.parseInt(sid)).getName()+"删除失败");
       }
     }
   }
