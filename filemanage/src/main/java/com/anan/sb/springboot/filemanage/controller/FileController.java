@@ -92,7 +92,7 @@ public class FileController {
    * @return 返回结果集
    */
   @PutMapping("/save/{id}")
-  public ResultVO update(@Valid FileForm data, @PathVariable("id") Integer id, BindingResult bindingResult){
+  public ResultVO update(@Valid @RequestBody FileForm data, @PathVariable("id") Integer id, BindingResult bindingResult){
     if (bindingResult.hasErrors() || null != data.getFileTypeId()) {
       log.error("【文件管理】参数不正确, FileForm={}", data);
       throw new FileException(ResultEnum.PARAM_ERROR.getCode(),
