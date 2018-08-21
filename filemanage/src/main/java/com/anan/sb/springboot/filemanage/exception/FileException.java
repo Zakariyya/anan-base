@@ -3,7 +3,7 @@ package com.anan.sb.springboot.filemanage.exception;
 import com.anan.sb.springboot.filemanage.enums.ResultEnum;
 
 /**
- * 文件衣厂
+ * File Exception
  * @author anan
  * Created on 2018/8/8.
  */

@@ -1,4 +1,4 @@
-package com.anan.sb.springboot.filemanage.vo;
+package com.anan.springboot.core.vo;
 
 import lombok.Data;
 

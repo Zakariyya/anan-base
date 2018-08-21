@@ -3,20 +3,17 @@ package com.anan.sb.springboot.filemanage.service.impl;
 import com.anan.sb.springboot.filemanage.exception.FileException;
 import com.anan.sb.springboot.filemanage.form.FileForm;
 import com.anan.sb.springboot.filemanage.orm.File;
-import com.anan.sb.springboot.filemanage.orm.core.DictOption;
-import com.anan.sb.springboot.filemanage.orm.core.ResponseResult;
 import com.anan.sb.springboot.filemanage.repository.FileRepository;
-import com.anan.sb.springboot.filemanage.repository.core.DictOptionRepository;
 import com.anan.sb.springboot.filemanage.service.FileService;
-import com.fasterxml.jackson.databind.exc.InvalidDefinitionException;
+import com.anan.springboot.core.orm.DictOption;
+import com.anan.springboot.core.orm.ResponseResult;
+import com.anan.springboot.core.repository.DictOptionRepository;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -75,13 +72,14 @@ public class FileServiceImpl implements FileService {
   }
 
   /**
-   * 如果出现parent引用，则不允许删除
-   * @param id [1,2,3,4.5]
+   * no delete, if it have a children
+   * @param id "1,2,3,4.5"
    */
   @Override
   public void delete(String id, ResponseResult result) {
     String[] ids = id.split(",");
     //做循环删除，若文件删除失败报出异常直接 略过处理，不做回滚
+    //foreach delete, if failure? jump in catch add message,	and then continue
     for (String sid : ids) {
       try{
         if(fileRepository.findAllByParent(new File(Integer.parseInt(sid))).size() == 0){
@@ -95,14 +93,14 @@ public class FileServiceImpl implements FileService {
   }
 
   /**
-   * 强制删除，这里做递归查询删除
+   * force delete , true/false
    * @param id [1,2,3,4.5]
-   * @param force 是否强制删除 true/false
+   * @param force delete -f ? true/false
    */
   @Override
   public void delete(String id, Boolean force,ResponseResult result) {
     if(force)
-      //TODO 强制删除
+      //TODO 强制删除,递归
       log.info("delete -f :"+id);
     else
       delete(id,result);

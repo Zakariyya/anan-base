@@ -3,6 +3,7 @@ package com.anan.sb.springboot.filemanage.enums;
 import lombok.Getter;
 
 /**
+ * to result
  * @author anan
  * Create on 2018/8/19
  */

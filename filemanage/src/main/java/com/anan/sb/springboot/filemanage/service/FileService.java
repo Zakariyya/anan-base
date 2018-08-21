@@ -2,11 +2,9 @@ package com.anan.sb.springboot.filemanage.service;
 
 import com.anan.sb.springboot.filemanage.form.FileForm;
 import com.anan.sb.springboot.filemanage.orm.File;
-import com.anan.sb.springboot.filemanage.orm.core.ResponseResult;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import com.anan.springboot.core.orm.ResponseResult;
+
 import java.util.List;
-import java.util.ResourceBundle;
 
 /**
  * @author anan
@@ -15,19 +13,20 @@ import java.util.ResourceBundle;
 public interface FileService {
 
   /**
-   * 新增/编辑 文件夹 && 上传/编辑 文件
-   * @param data
-   * @return
+   * save file dir
+   * @param data FileForm
+   * @return File: but I find it cant return a result from the database
    */
   File save(FileForm data);
 
-  File update(FileForm data,ResponseResult result);
-
   /**
-   *
-   * @param id
-   * @return
+   * update
+   * @param data FileForm
+   * @param result 4 message or error flag
+   * @return File
    */
+  File update(FileForm data, ResponseResult result);
+
   void delete(String id,ResponseResult result);
 
   void delete(String id, Boolean force, ResponseResult result);

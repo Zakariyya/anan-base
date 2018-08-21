@@ -1,4 +1,4 @@
-package com.anan.sb.springboot.filemanage.orm.core;
+package com.anan.springboot.core.orm;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -25,11 +25,11 @@ public class FtpUtil {
    ****************************************************/
 
   /***
-   * 连接ftp
-   * @param url  必须是  192.168.8.1  否则提示异常
-   * @param port
-   * @param username
-   * @param password
+   * connect the ftp server
+   * @param url https://localhost
+   * @param port port
+   * @param username account name of ftp
+   * @param password account password of ftp
    * @return
    */
   public static FtpClient connectFTP(String url, int port, String username, String password) {
@@ -53,9 +53,10 @@ public class FtpUtil {
   }
 
   /**
-   * 从 FTP 下载文件内容，以list存储，需自行遍历list，读取或做文件存储
-   * @param ftpFilePath
-   * @param ftp
+   * download the file content in the List by FTP server
+   * need foreach the List for read or write
+   * @param ftpFilePath need to download the file's path in the ftp server
+   * @param ftp a Object by connect ftp, need run connectFTP() method
    * @return
    */
   public static List<String> download(String ftpFilePath, FtpClient ftp) {
@@ -85,16 +86,16 @@ public class FtpUtil {
 
 
   /**
-   * Description: 向FTP服务器上传文件
+   * upload file to FTP server
    * @Version      1.0
-   * @param url FTP服务器hostname
-   * @param port  FTP服务器端口
-   * @param username FTP登录账号
-   * @param password  FTP登录密码
-   * @param path  FTP服务器保存目录
-   * @param filename  上传到FTP服务器上的文件名
-   * @param input   输入流
-   * @return 成功返回true，否则返回false *
+   * @param url FTP  hostname
+   * @param port  FTP  port
+   * @param username FTP account name
+   * @param password  FTP account password
+   * @param path  FTP save path
+   * @param filename  the file name with upload to FTP
+   * @param input   inputstream
+   * @return success return true，other return false *
    */
   public static boolean uploadFile(String url,// FTP服务器hostname
                                    Integer port,// FTP服务器端口
@@ -138,7 +139,7 @@ public class FtpUtil {
   }
 
   /**
-   * 将本地文件上传到FTP服务器上 *
+   * upload local file to ftp *
    */
   public static void upLoadFromProduction(String url,// FTP服务器hostname
                                           Integer port,// FTP服务器端口

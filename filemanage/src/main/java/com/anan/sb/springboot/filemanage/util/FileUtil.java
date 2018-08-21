@@ -1,22 +1,14 @@
 package com.anan.sb.springboot.filemanage.util;
 
 import org.springframework.web.multipart.MultipartFile;
-import org.apache.commons.net.ftp.FTPClient;
-import org.apache.commons.net.ftp.FTPReply;
-import sun.net.ftp.FtpClient;
-import sun.net.ftp.FtpProtocolException;
 
 import java.io.*;
 import java.math.BigInteger;
-import java.net.InetSocketAddress;
-import java.net.SocketAddress;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.security.MessageDigest;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author anan
@@ -26,15 +18,13 @@ public class FileUtil {
 
 
   /*************************************************
-   *******                                  ********
    *******    upload / download by server   ********
-   *******                                  ********
    *************************************************/
 
   /**
-   * 上传文件到服务器
-   * @param mulFile：文件流
-   * @param uploadPath：上传路径
+   * upload to server
+   * @param mulFile：MultipartFile
+   * @param uploadPath：the server's upload path
    * @return
    */
   public static File uploadFile(MultipartFile mulFile, String uploadPath) {
@@ -47,7 +37,7 @@ public class FileUtil {
     String filePath = uploadPath + infrontName + "-" + timestamp + suffixName;// 给名字添加时间戳
 
     /**
-     * 文件存储
+     * save file
      */
     File target = new File(filePath);// 创建一个新文件
     if (!target.getParentFile().exists()) {// 检测是否存在目录
@@ -63,7 +53,7 @@ public class FileUtil {
 
 
   /**
-   * 获取文件的 MD5 值
+   * get the file's md5
    * @param file
    * @return
    * @throws FileNotFoundException
@@ -93,7 +83,7 @@ public class FileUtil {
 
 
   /**
-   * 获取文件大小（带单位）
+   * get the file'size with unit
    * @param filesize
    * @return
    */

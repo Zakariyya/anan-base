@@ -1,4 +1,4 @@
-package com.anan.sb.springboot.filemanage.enums;
+package com.anan.springboot.core.enums;
 
 /**
  * @author anan

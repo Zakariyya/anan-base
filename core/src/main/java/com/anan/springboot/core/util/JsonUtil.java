@@ -1,4 +1,4 @@
-package com.anan.sb.springboot.filemanage.util;
+package com.anan.springboot.core.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

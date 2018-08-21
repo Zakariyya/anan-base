@@ -1,4 +1,4 @@
-package com.anan.sb.springboot.filemanage.orm.core;
+package com.anan.springboot.core.orm;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;

@@ -5,19 +5,16 @@ import com.anan.sb.springboot.filemanage.enums.ResultEnum;
 import com.anan.sb.springboot.filemanage.exception.FileException;
 import com.anan.sb.springboot.filemanage.form.FileForm;
 import com.anan.sb.springboot.filemanage.orm.File;
-import com.anan.sb.springboot.filemanage.orm.core.ResponseResult;
 import com.anan.sb.springboot.filemanage.service.FileService;
 import com.anan.sb.springboot.filemanage.util.FileUtil;
-import com.anan.sb.springboot.filemanage.util.ResultVOUtil;
-import com.anan.sb.springboot.filemanage.vo.ResultVO;
-import javafx.application.Application;
+import com.anan.springboot.core.orm.ResponseResult;
+import com.anan.springboot.core.util.ResultVOUtil;
+import com.anan.springboot.core.vo.ResultVO;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.InputStreamResource;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,10 +24,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.text.DateFormat;
 import java.util.List;
-import java.util.Map;
+
 /**
  * @author anan
  * Created on 2018/8/8.
@@ -47,8 +42,8 @@ public class FileController {
   private FileConfig fileConfig;
 
   /**
-   * 返回所有列表
-   * @return 返回结果集
+   * findAll
+   * @return ResultVO
    */
   @GetMapping("/file")
   public ResultVO findAll(){
@@ -57,9 +52,9 @@ public class FileController {
   }
 
   /**
-   * 获取单个
-   * @param id 主键
-   * @return 返回结果集
+   * findOne
+   * @param id primary key
+   * @return ResultVO
    */
   @GetMapping("/file/{id}")
   public ResultVO findOne(@PathVariable("id") Integer id){
@@ -67,9 +62,9 @@ public class FileController {
   }
 
   /**
-   * 保存文件夹
-   * @param data :File pojo
-   * @return 返回结果集
+   * save
+   * @param data :FileForm pojo
+   * @return ResultVO
    */
   @ResponseBody
   @PostMapping(value = "/file",produces = MediaType.APPLICATION_JSON_VALUE)
@@ -86,9 +81,9 @@ public class FileController {
 
 
   /**
-   * 更新文件夹、文件基本信息
-   * @param data :File pojo
-   * @return 返回结果集
+   * update file info
+   * @param data :FileForm pojo
+   * @return ResultVO
    */
   @PutMapping("/file/{id}")
   public ResultVO update(@Valid @RequestBody FileForm data, @PathVariable("id") Integer id, BindingResult bindingResult){
@@ -108,10 +103,10 @@ public class FileController {
 
 
   /**
-   * 删除/批量删除
+   * batch delete
    * @param id // @RequestBody Map<String,String> param {"id":"1,2,3,4,5"}
    *           // @PathVariable String id :"1,2,3,4,5", force: 1/true/0/false
-   * @return 返回结果集
+   * @return ResultVO
    */
   @ResponseBody
   @RequestMapping(value = "/file/{id}/{force}", method = RequestMethod.DELETE)
@@ -125,8 +120,9 @@ public class FileController {
 
 
   /**
-   * @param data : File
-   * @return 返回结果集
+   * upload file
+   * @param data : FileForm
+   * @return ResultVO
    */
   @ResponseBody
   @PostMapping(value = "/file/io",produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
@@ -150,8 +146,8 @@ public class FileController {
   }
 
   /**
-   * 提供文件下载
-   * @return 返回结果集
+   * download file
+   * @return ResultVO
    */
   @RequestMapping(value = "/file/io/{id}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
   public ResponseEntity<InputStreamResource> download(@PathVariable("id") Integer id) throws Exception {

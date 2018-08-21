@@ -1,4 +1,4 @@
-package com.anan.sb.springboot.filemanage.util;
+package com.anan.springboot.core.util;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

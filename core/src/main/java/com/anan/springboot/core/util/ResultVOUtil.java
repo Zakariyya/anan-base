@@ -1,10 +1,8 @@
-package com.anan.sb.springboot.filemanage.util;
+package com.anan.springboot.core.util;
 
-import com.anan.sb.springboot.filemanage.vo.ResultVO;
+import com.anan.springboot.core.vo.ResultVO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import java.text.DateFormat;
 
 /**
  * @author anan
