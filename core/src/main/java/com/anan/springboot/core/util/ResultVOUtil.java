@@ -4,11 +4,16 @@ import com.anan.springboot.core.vo.ResultVO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.Serializable;
+
 /**
  * @author anan
  * Create on 2018/8/18
  */
-public class ResultVOUtil {
+public class ResultVOUtil implements Serializable {
+
+
+  private static final long serialVersionUID = 7251966408535541765L;
 
   public static ResultVO success(Object object) {
     ResultVO resultVO = new ResultVO();

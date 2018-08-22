@@ -27,7 +27,7 @@ import java.util.Date;
 @Entity
 @Data
 @DynamicUpdate
-//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class File implements Serializable {
   private static final long serialVersionUID = 9114120134178532287L;
 
@@ -63,7 +63,7 @@ public class File implements Serializable {
    */
   @JoinColumn(name="file_file_type")
 //  @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
-  @ManyToOne(cascade = CascadeType.REFRESH, optional = true, fetch = FetchType.LAZY)
+  @ManyToOne(cascade = CascadeType.REFRESH, optional = true, fetch = FetchType.EAGER)
   private DictOption fileType;
 
   @Column(name="remark")
