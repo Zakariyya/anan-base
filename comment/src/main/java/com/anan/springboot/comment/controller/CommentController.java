@@ -1,9 +1,12 @@
 package com.anan.springboot.comment.controller;
 
+import com.anan.sb.springboot.filemanage.enums.ResultEnum;
+import com.anan.springboot.comment.converter.Comment2CommentDto;
 import com.anan.springboot.comment.dto.CommentDto;
 import com.anan.springboot.comment.exception.CommentException;
 import com.anan.springboot.comment.orm.Comment;
 import com.anan.springboot.comment.service.CommentService;
+import com.anan.springboot.core.orm.ResponseResult;
 import com.anan.springboot.core.util.ResultVOUtil;
 import com.anan.springboot.core.vo.ResultVO;
 import lombok.extern.slf4j.Slf4j;
@@ -62,6 +65,31 @@ public class CommentController {
               bindingResult.getFieldError().getDefaultMessage());
     }
     commentService.save(data);
+    return ResultVOUtil.success();
+  }
+
+  /**
+   * update file info
+   * @param data :FileForm pojo
+   * @return ResultVO
+   */
+  @PutMapping("/file/{id}")
+  public ResultVO update(@Valid @RequestBody CommentDto data, @PathVariable("id") String id, BindingResult bindingResult){
+    if (bindingResult.hasErrors() ){
+      log.error("【文件管理】参数不正确, FileForm={}", data);
+      throw new CommentException(ResultEnum.PARAM_ERROR.getCode(),
+              bindingResult.getFieldError().getDefaultMessage());
+    }
+    ResponseResult result = new ResponseResult();
+    data.setId(id);
+
+    Comment2CommentDto c2c = new Comment2CommentDto();
+
+    
+
+    commentService.update(data, result);
+    if(result.hasErrors())
+      return ResultVOUtil.error(ResultEnum.FAILURE.getCode(), result.getMessage());
     return ResultVOUtil.success();
 
   }
