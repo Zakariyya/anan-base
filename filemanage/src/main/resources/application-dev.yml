@@ -15,7 +15,7 @@ spring:
 server:
   port: 8087
   servlet:
-    context-path: /filedemo
+    context-path: /fileManage
 
 fileConfig:
   uploadPath: d:/

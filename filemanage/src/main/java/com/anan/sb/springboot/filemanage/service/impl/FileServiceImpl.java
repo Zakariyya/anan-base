@@ -32,7 +32,7 @@ public class FileServiceImpl implements FileService {
   @Autowired
   private DictOptionRepository dictOptionRepository;
 
-  /** @deprecated save
+  /**
    * @param form FileForm
    * @return File
    */

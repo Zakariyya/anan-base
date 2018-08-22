@@ -3,7 +3,7 @@ package com.anan.sb.springboot.filemanage.exception;
 import com.anan.sb.springboot.filemanage.enums.ResultEnum;
 
 /**
- * File Exception
+ * File exception
  * @author anan
  * Created on 2018/8/8.
  */

@@ -31,7 +31,7 @@ import java.util.List;
  * Created on 2018/8/8.
  */
 @RestController
-@RequestMapping("/filemanager")
+@RequestMapping("/fileManage")
 @Slf4j
 public class FileController {
 

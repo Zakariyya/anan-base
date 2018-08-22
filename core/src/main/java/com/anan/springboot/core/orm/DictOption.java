@@ -1,5 +1,6 @@
 package com.anan.springboot.core.orm;
 
+import com.anan.springboot.core.CoreTable;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -9,7 +10,7 @@ import java.io.Serializable;
  * @author anan
  * Create on 2018/8/19
  */
-@Entity(name = "dict_option")
+@Entity(name = CoreTable.dictOption)
 @Data
 //@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class DictOption implements Serializable, Comparable<DictOption>  {

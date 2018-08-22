@@ -1,5 +1,6 @@
 package com.anan.sb.springboot.filemanage.orm;
 
+import com.anan.springboot.core.CoreTable;
 import com.anan.springboot.core.orm.DictOption;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -23,7 +24,7 @@ import java.util.Date;
  * @author anan
  * Created on 2018/8/18.
  */
-@Table(name="file_file")
+@Table(name= CoreTable.file)
 @Entity
 @Data
 @DynamicUpdate
@@ -59,7 +60,7 @@ public class File implements Serializable {
 
   /**
    * it's from com.anan.springboot.core.orm.DictOption.
-   * if the DictOption return is null, return a Exception
+   * if the DictOption return is null, return a exception
    */
   @JoinColumn(name="file_file_type")
 //  @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
