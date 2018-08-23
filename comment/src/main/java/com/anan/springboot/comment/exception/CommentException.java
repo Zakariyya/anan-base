@@ -1,6 +1,7 @@
 package com.anan.springboot.comment.exception;
 
-import com.anan.sb.springboot.filemanage.enums.ResultEnum;
+
+import com.anan.springboot.core.enums.ResultEnum;
 
 /**
  * @author yaokunyi

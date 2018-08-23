@@ -19,7 +19,7 @@ public interface CommentService {
 
   Comment save (Comment data);
 
-  Comment update (Comment data);
+  Integer update (Comment data, ResponseResult result);
 
   Comment delete(String uuid, ResponseResult result);
 

@@ -1,6 +1,7 @@
 package com.anan.springboot.comment.orm;
 
 import com.anan.springboot.core.CoreTable;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -17,6 +18,7 @@ import java.util.Date;
 @Entity(name = CoreTable.comment)
 @Data
 @DynamicUpdate
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Comment implements Serializable {
 
   private static final long serialVersionUID = 3978596680512152259L;
@@ -32,7 +34,6 @@ public class Comment implements Serializable {
   @JoinColumn(name = "parent_id")
   private String parentId;
 
-  @NotNull
   @Column(name="content")
   private String content;
 

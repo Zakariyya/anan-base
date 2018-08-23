@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
  * Created on 2018/8/22.
  */
 @Data
-public class CommentDto extends Comment{
+public class CommentDto{
 
   private String id;
 
@@ -19,6 +19,8 @@ public class CommentDto extends Comment{
   @NotBlank(message = "内容必填")
   private String content;
 
+  private Long createTime;
 
+  private Long updateTime;
 
 }

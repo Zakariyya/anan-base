@@ -45,7 +45,7 @@ public class FileController {
    * findAll
    * @return ResultVO
    */
-  @GetMapping("/file")
+  @GetMapping("")
   public ResultVO findAll(){
     List<File> all = fileService.findAll();
     return ResultVOUtil.success(all);
@@ -56,7 +56,7 @@ public class FileController {
    * @param id primary key
    * @return ResultVO
    */
-  @GetMapping("/file/{id}")
+  @GetMapping("/{id}")
   public ResultVO findOne(@PathVariable("id") Integer id){
     return ResultVOUtil.success(fileService.findOne(id));
   }
@@ -67,7 +67,7 @@ public class FileController {
    * @return ResultVO
    */
   @ResponseBody
-  @PostMapping(value = "/file",produces = MediaType.APPLICATION_JSON_VALUE)
+  @PostMapping(value = "",produces = MediaType.APPLICATION_JSON_VALUE)
   public ResultVO save(@Valid @RequestBody FileForm data, BindingResult bindingResult){
     if (bindingResult.hasErrors()) {
       log.error("【文件管理】参数不正确, FileForm={}", data);
@@ -85,7 +85,7 @@ public class FileController {
    * @param data :FileForm pojo
    * @return ResultVO
    */
-  @PutMapping("/file/{id}")
+  @PutMapping("/{id}")
   public ResultVO update(@Valid @RequestBody FileForm data, @PathVariable("id") Integer id, BindingResult bindingResult){
     if (bindingResult.hasErrors() || null == data.getFileTypeId()) {
       log.error("【文件管理】参数不正确, FileForm={}", data);
@@ -109,7 +109,7 @@ public class FileController {
    * @return ResultVO
    */
   @ResponseBody
-  @RequestMapping(value = "/file/{id}/{force}", method = RequestMethod.DELETE)
+  @RequestMapping(value = "/{id}/{force}", method = RequestMethod.DELETE)
   public ResultVO delete(@PathVariable("id") String id, @PathVariable("force") boolean force) {
     ResponseResult result = new ResponseResult();
     fileService.delete(id, force,result);
@@ -125,7 +125,7 @@ public class FileController {
    * @return ResultVO
    */
   @ResponseBody
-  @PostMapping(value = "/file/io",produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
+  @PostMapping(value = "/io",produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
   public ResultVO upload(@RequestBody FileForm data){
     try {
       java.io.File file = FileUtil.uploadFile(data.getMulFile(), fileConfig.getUploadPath());
@@ -149,7 +149,7 @@ public class FileController {
    * download file
    * @return ResultVO
    */
-  @RequestMapping(value = "/file/io/{id}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
+  @RequestMapping(value = "/io/{id}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
   public ResponseEntity<InputStreamResource> download(@PathVariable("id") Integer id) throws Exception {
 
     val filePath =  fileService.findOne(id).getFilePath();

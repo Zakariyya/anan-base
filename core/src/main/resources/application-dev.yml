@@ -7,7 +7,7 @@ spring:
   jpa:
     show-sql: true
   jackson:
-    default-property-inclusion: non_null
+    default-property-inclusion: always
   aop:
     auto: true # Add @EnableAspectJAutoProxy.
     proxy-target-class: true  # Whether subclass-based (CGLIB) proxies are to be created (true) as

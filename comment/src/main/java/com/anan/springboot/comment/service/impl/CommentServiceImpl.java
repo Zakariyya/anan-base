@@ -4,6 +4,7 @@ import com.anan.springboot.comment.orm.Comment;
 import com.anan.springboot.comment.repository.CommentRepository;
 import com.anan.springboot.comment.service.CommentService;
 import com.anan.springboot.core.orm.ResponseResult;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,7 +30,7 @@ public class CommentServiceImpl implements CommentService {
 
   @Override
   public Comment findOne(String uuid) {
-    return commentRepository.getOne(uuid);
+    return commentRepository.findAllById(uuid);
   }
 
   @Override
@@ -39,9 +40,8 @@ public class CommentServiceImpl implements CommentService {
   }
 
   @Override
-  public Comment update(Comment data) {
-    data.setParentId(commentRepository.getOne(data.getId()).getParentId());
-    return commentRepository.save(data);
+  public Integer update(Comment data, ResponseResult result) {
+    return commentRepository.updateContentById(data.getContent(),data.getId());
   }
 
   @Override

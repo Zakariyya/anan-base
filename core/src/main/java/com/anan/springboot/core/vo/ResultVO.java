@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @author anan
  * Create on 2018/8/18
  */
-@Data
+//@Data
 public class ResultVO<T> implements Serializable {
 
   private static final long serialVersionUID = -1254223930581160279L;
@@ -19,4 +19,37 @@ public class ResultVO<T> implements Serializable {
   private String msg;
   /** 具体内容. */
   private T data;
+
+  @Override
+  public String toString() {
+    return "ResultVO{" +
+            "code=" + code +
+            ", msg='" + msg + '\'' +
+            ", data=" + data +
+            '}';
+  }
+
+  public Integer getCode() {
+    return code;
+  }
+
+  public void setCode(Integer code) {
+    this.code = code;
+  }
+
+  public String getMsg() {
+    return msg;
+  }
+
+  public void setMsg(String msg) {
+    this.msg = msg;
+  }
+
+  public T getData() {
+    return data;
+  }
+
+  public void setData(T data) {
+    this.data = data;
+  }
 }
