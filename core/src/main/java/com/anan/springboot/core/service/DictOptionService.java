@@ -124,13 +124,7 @@ public class DictOptionService{
     return jsonArray;
   }
 
-  protected Criteria createCriteria(Class<?> entityClass) {
-    return dao.createCriteria(entityClass);
-  }
-
-  protected Criteria createCriteria(Class<?> entityClass, String alias) {
-    return dao.createCriteria(entityClass, alias);
-  }
+  
 
 
 
