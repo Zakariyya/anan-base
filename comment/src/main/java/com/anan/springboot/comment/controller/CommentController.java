@@ -4,6 +4,8 @@ import com.anan.springboot.comment.converter.Comment2CommentDto;
 import com.anan.springboot.comment.dto.CommentDto;
 import com.anan.springboot.comment.orm.Comment;
 import com.anan.springboot.comment.service.CommentService;
+import com.anan.springboot.core.service.DictOptionService;
+import com.anan.springboot.core.enums.EnabledEnum;
 import com.anan.springboot.core.enums.ResultEnum;
 import com.anan.springboot.core.exception.CoreException;
 import com.anan.springboot.core.orm.ResponseResult;
@@ -17,7 +19,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author yaokunyi
@@ -31,6 +35,8 @@ public class CommentController {
   @Autowired
   private CommentService commentService;
 
+  @Autowired
+  private DictOptionService dictOptionService;
 
   /**
    * findAll
@@ -75,7 +81,7 @@ public class CommentController {
   }
 
   /**
-   * update file info
+   * update info
    * @param data :FileForm pojo
    * @return ResultVO
    */
@@ -111,6 +117,20 @@ public class CommentController {
       return ResultVOUtil.error(ResultEnum.DELETE_SECTION.getCode(), result.getMessage());
     return ResultVOUtil.success();
   }
+
+
+  /**
+   * relation
+   * @return
+   */
+  @RequestMapping(path = "/relation", method = RequestMethod.GET)
+  public @ResponseBody String relation() {
+    Map<String, Object> data = new HashMap<String, Object>();
+    data.put("enabled", EnabledEnum.relation());
+    data.put("shiftTypeId", this.dictOptionService.listByTypeForRelation(.class));
+    return relation(data);
+  }
+
 
 
 

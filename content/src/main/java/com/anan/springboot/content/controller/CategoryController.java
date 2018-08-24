@@ -67,7 +67,7 @@ public class CategoryController {
   }
 
   /**
-   * update file info
+   * update info
    * @param data :FileForm pojo
    * @return ResultVO
    */

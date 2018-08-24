@@ -1,5 +1,6 @@
 package com.anan.springboot.content.service;
 
+import com.anan.springboot.content.form.ContentForm;
 import com.anan.springboot.content.orm.Content;
 import com.anan.springboot.core.orm.ResponseResult;
 
@@ -15,9 +16,9 @@ public interface ContentService {
 
   Content findOne(String id);
 
-  Content save (Content data);
+  Content save (ContentForm data);
 
-  Content update (Content data, ResponseResult result);
+  Content update (ContentForm data, ResponseResult result);
 
   void delete(String id, ResponseResult result);
 
