@@ -14,7 +14,6 @@ public interface CommentService {
 
   List<Comment> findAll();
 
-
   Comment findOne(String uuid);
 
   Comment save (Comment data);
@@ -22,6 +21,7 @@ public interface CommentService {
   Integer update (Comment data, ResponseResult result);
 
   Comment delete(String uuid, ResponseResult result);
+
 
 
 }

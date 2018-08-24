@@ -1,7 +1,8 @@
 package com.anan.sb.springboot.filemanage.form;
 
-import com.anan.sb.springboot.filemanage.orm.File;
+import com.anan.springboot.core.form.CoreForm;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -11,7 +12,7 @@ import javax.validation.constraints.NotNull;
  * Create on 2018/8/19
  */
 @Data
-public class FileForm extends File {
+public class FileForm extends CoreForm<Integer> {
 
   //不做参数传递
   private Integer id;
@@ -25,5 +26,13 @@ public class FileForm extends File {
   private Integer fileTypeId;
 
   private String remark;
+
+  private MultipartFile mulFile;
+
+  private String md5;
+
+  private long size;
+
+  private String filePath;
 
 }

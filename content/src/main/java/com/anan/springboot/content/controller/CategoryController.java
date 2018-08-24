@@ -1,9 +1,8 @@
-package com.anan.springboot.comment.controller;
+package com.anan.springboot.content.controller;
 
-import com.anan.springboot.comment.converter.Comment2CommentDto;
-import com.anan.springboot.comment.dto.CommentDto;
-import com.anan.springboot.comment.orm.Comment;
-import com.anan.springboot.comment.service.CommentService;
+import com.anan.springboot.content.form.CategoryForm;
+import com.anan.springboot.content.orm.Category;
+import com.anan.springboot.content.service.CategoryService;
 import com.anan.springboot.core.enums.ResultEnum;
 import com.anan.springboot.core.exception.CoreException;
 import com.anan.springboot.core.orm.ResponseResult;
@@ -16,35 +15,28 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author yaokunyi
- * Created on 2018/8/22.
+ * Created on 2018/8/24.
  */
 @RestController
-@RequestMapping("/comment")
+@RequestMapping("/category")
 @Slf4j
-public class CommentController {
+public class CategoryController {
 
   @Autowired
-  private CommentService commentService;
-
+  private CategoryService categoryService;
 
   /**
    * findAll
-   * @return ResultVO<Comment2CommentDto></>
+   * @return ResultVO<Category>
    */
   @GetMapping("")
   public ResultVO findAll(){
-    List<Comment> all = commentService.findAll();
-    List<CommentDto> dtoList = new ArrayList<>();
-    Comment2CommentDto c2c = new Comment2CommentDto();
-    for (Comment item : all) {
-      dtoList.add(c2c.convert(item));
-    }
-    return ResultVOUtil.success(dtoList);
+    List<Category> all = categoryService.findAll();
+    return ResultVOUtil.success(all);
   }
 
   /**
@@ -53,24 +45,24 @@ public class CommentController {
    * @return ResultVO
    */
   @GetMapping("/{id}")
-  public ResultVO findOne(@PathVariable("id") String id){
-    return ResultVOUtil.success(commentService.findOne(id));
+  public ResultVO findOne(@PathVariable("id") Integer id){
+    return ResultVOUtil.success(categoryService.findOne(id));
   }
 
   /**
    * save
-   * @param data :CommentDto pojo
+   * @param data :CategoryDto pojo
    * @return ResultVO
    */
   @ResponseBody
   @PostMapping(value = "",produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResultVO save(@Valid @RequestBody Comment data, BindingResult bindingResult){
+  public ResultVO save(@Valid @RequestBody CategoryForm data, BindingResult bindingResult){
     if (bindingResult.hasErrors()) {
-      log.error("【评论管理】参数不正确, CommentDto={}", data);
+      log.error("【类别管理】参数不正确, CategoryDto={}", data);
       throw new CoreException(ResultEnum.PARAM_ERROR.getCode(),
               bindingResult.getFieldError().getDefaultMessage());
     }
-    commentService.save(data);
+    categoryService.save(data);
     return ResultVOUtil.success();
   }
 
@@ -80,15 +72,15 @@ public class CommentController {
    * @return ResultVO
    */
   @PutMapping("/{id}")
-  public ResultVO update(@Valid @RequestBody Comment data, @PathVariable("id") String id, BindingResult bindingResult){
+  public ResultVO update(@Valid @RequestBody CategoryForm data, @PathVariable("id") Integer id, BindingResult bindingResult){
     if (bindingResult.hasErrors() ){
-      log.error("【评论管理】参数不正确, CommentDto={}", data);
+      log.error("【类别管理】参数不正确, CategoryDto={}", data);
       throw new CoreException(ResultEnum.PARAM_ERROR.getCode(),
               bindingResult.getFieldError().getDefaultMessage());
     }
     ResponseResult result = new ResponseResult();
     data.setId(id);
-    commentService.update(data, result);
+    categoryService.update(data, result);
     if(result.hasErrors())
       return ResultVOUtil.error(ResultEnum.FAILURE.getCode(), result.getMessage());
     return ResultVOUtil.success();
@@ -106,7 +98,7 @@ public class CommentController {
   @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
   public ResultVO delete(@PathVariable("id") String id) {
     ResponseResult result = new ResponseResult();
-    commentService.delete(id,result);
+    categoryService.delete(id,result);
     if(result.hasMessages())
       return ResultVOUtil.error(ResultEnum.DELETE_SECTION.getCode(), result.getMessage());
     return ResultVOUtil.success();

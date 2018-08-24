@@ -17,6 +17,5 @@ public interface CommentRepository extends JpaRepository<Comment, String>, JpaSp
   @Query(value = "UPDATE "+ CoreTable.comment +" SET content =? WHERE id = ?", nativeQuery = true)
   Integer updateContentById(String content, String id);
 
-  Comment findAllById(String uuid);
 
 }

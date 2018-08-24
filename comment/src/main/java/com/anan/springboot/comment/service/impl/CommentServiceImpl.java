@@ -30,7 +30,7 @@ public class CommentServiceImpl implements CommentService {
 
   @Override
   public Comment findOne(String uuid) {
-    return commentRepository.findAllById(uuid);
+    return commentRepository.findById(uuid).get();
   }
 
   @Override

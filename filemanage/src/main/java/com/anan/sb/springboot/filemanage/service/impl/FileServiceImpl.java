@@ -1,13 +1,14 @@
 package com.anan.sb.springboot.filemanage.service.impl;
 
-import com.anan.sb.springboot.filemanage.exception.FileException;
 import com.anan.sb.springboot.filemanage.form.FileForm;
 import com.anan.sb.springboot.filemanage.orm.File;
 import com.anan.sb.springboot.filemanage.repository.FileRepository;
 import com.anan.sb.springboot.filemanage.service.FileService;
+import com.anan.springboot.core.exception.CoreException;
 import com.anan.springboot.core.orm.DictOption;
 import com.anan.springboot.core.orm.ResponseResult;
 import com.anan.springboot.core.repository.DictOptionRepository;
+import com.anan.springboot.core.util.VerifyForm;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,9 @@ public class FileServiceImpl implements FileService {
   @Autowired
   private DictOptionRepository dictOptionRepository;
 
+  @Autowired
+  private VerifyForm verifyForm;
+
   /**
    * @param form FileForm
    * @return File
@@ -40,7 +44,7 @@ public class FileServiceImpl implements FileService {
   public File save(FileForm form) {
     File data = new File();
 
-    DictOption fileType = dictOptionRepository.getOne(form.getFileTypeId());
+    DictOption fileType = dictOptionRepository.findById(form.getFileTypeId()).get();
     data.setFileType(fileType);
     if (null != form.getParentId()) {
       data.setParent(findOne(form.getParentId()));
@@ -55,13 +59,11 @@ public class FileServiceImpl implements FileService {
   public File update(FileForm form, ResponseResult result) {
 
     File data = findOne(form.getId());
-    if (null == data) {
-      result.addError("更新失败，无该文件");
-      return null;
-    }else if(form.getParentId() == form.getId()){
-      result.addError("更新失败，你想多了，自己不能做自己的爸爸");
+    verifyForm.dataIsNullOrFormParentIdEqId(data,form,result);
+    if(result.hasErrors()){
       return null;
     }
+
     if(null != form.getParentId()){
       data.setParent(findOne(form.getParentId()));
     }
@@ -85,9 +87,9 @@ public class FileServiceImpl implements FileService {
         if(fileRepository.findAllByParent(new File(Integer.parseInt(sid))).size() == 0){
           fileRepository.deleteById(Integer.parseInt(sid));
         }
-        result.addMessage("文件夹名为"+fileRepository.getOne(Integer.parseInt(sid)).getName()+"，存在下级，删除失败");
-      }catch (FileException e){
-        result.addMessage("文件名为"+fileRepository.getOne(Integer.parseInt(sid)).getName()+"删除失败");
+        result.addMessage("文件夹名为"+fileRepository.findById(Integer.parseInt(sid)).get().getName()+"，存在下级，删除失败");
+      }catch (CoreException e){
+        result.addMessage("文件名为"+fileRepository.findById(Integer.parseInt(sid)).get().getName()+"删除失败");
       }
     }
   }

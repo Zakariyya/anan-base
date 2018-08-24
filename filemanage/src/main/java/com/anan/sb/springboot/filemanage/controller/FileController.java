@@ -2,11 +2,11 @@ package com.anan.sb.springboot.filemanage.controller;
 
 import com.anan.sb.springboot.filemanage.config.FileConfig;
 import com.anan.sb.springboot.filemanage.enums.ResultEnum;
-import com.anan.sb.springboot.filemanage.exception.FileException;
 import com.anan.sb.springboot.filemanage.form.FileForm;
 import com.anan.sb.springboot.filemanage.orm.File;
 import com.anan.sb.springboot.filemanage.service.FileService;
 import com.anan.sb.springboot.filemanage.util.FileUtil;
+import com.anan.springboot.core.exception.CoreException;
 import com.anan.springboot.core.orm.ResponseResult;
 import com.anan.springboot.core.util.ResultVOUtil;
 import com.anan.springboot.core.vo.ResultVO;
@@ -31,7 +31,7 @@ import java.util.List;
  * Created on 2018/8/8.
  */
 @RestController
-@RequestMapping("/fileManage")
+@RequestMapping("/file")
 @Slf4j
 public class FileController {
 
@@ -71,7 +71,7 @@ public class FileController {
   public ResultVO save(@Valid @RequestBody FileForm data, BindingResult bindingResult){
     if (bindingResult.hasErrors()) {
       log.error("【文件管理】参数不正确, FileForm={}", data);
-      throw new FileException(ResultEnum.PARAM_ERROR.getCode(),
+      throw new CoreException(ResultEnum.PARAM_ERROR.getCode(),
               bindingResult.getFieldError().getDefaultMessage());
     }
     fileService.save(data);
@@ -89,7 +89,7 @@ public class FileController {
   public ResultVO update(@Valid @RequestBody FileForm data, @PathVariable("id") Integer id, BindingResult bindingResult){
     if (bindingResult.hasErrors() || null == data.getFileTypeId()) {
       log.error("【文件管理】参数不正确, FileForm={}", data);
-      throw new FileException(ResultEnum.PARAM_ERROR.getCode(),
+      throw new CoreException(ResultEnum.PARAM_ERROR.getCode(),
               bindingResult.getFieldError().getDefaultMessage());
     }
     ResponseResult result = new ResponseResult();

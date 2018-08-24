@@ -1,4 +1,4 @@
-package com.anan.springboot.comment.exception;
+package com.anan.springboot.core.exception;
 
 
 import com.anan.springboot.core.enums.ResultEnum;
@@ -7,17 +7,17 @@ import com.anan.springboot.core.enums.ResultEnum;
  * @author yaokunyi
  * Created on 2018/8/22.
  */
-public class CommentException extends RuntimeException{
+public class CoreException extends RuntimeException{
 
   private Integer code;
 
 
-  public CommentException(ResultEnum globalEnum) {
+  public CoreException(ResultEnum globalEnum) {
     super(globalEnum.getMessage());
     this.code = globalEnum.getCode();
   }
 
-  public CommentException(Integer code, String message) {
+  public CoreException(Integer code, String message) {
     super(message);
     this.code = code;
   }
