@@ -4,6 +4,7 @@ import com.anan.springboot.comment.converter.Comment2CommentDto;
 import com.anan.springboot.comment.dto.CommentDto;
 import com.anan.springboot.comment.orm.Comment;
 import com.anan.springboot.comment.service.CommentService;
+import com.anan.springboot.core.CoreTable;
 import com.anan.springboot.core.service.DictOptionService;
 import com.anan.springboot.core.enums.EnabledEnum;
 import com.anan.springboot.core.enums.ResultEnum;
@@ -101,7 +102,6 @@ public class CommentController {
 
   }
 
-
   /**
    * batch delete
    * @param id // @RequestBody Map<String,String> param {"id":"1,2,3,4,5"}
@@ -118,20 +118,17 @@ public class CommentController {
     return ResultVOUtil.success();
   }
 
-
   /**
    * relation
    * @return
    */
-  @RequestMapping(path = "/relation", method = RequestMethod.GET)
-  public @ResponseBody String relation() {
+  @GetMapping(path = "/relation")
+  public ResultVO relation() {
     Map<String, Object> data = new HashMap<String, Object>();
     data.put("enabled", EnabledEnum.relation());
-    data.put("shiftTypeId", this.dictOptionService.listByTypeForRelation(.class));
-    return relation(data);
+    data.put("shiftTypeId", this.dictOptionService.listByTypeForRelation(CoreTable.comment));
+    return ResultVOUtil.success(data);
   }
-
-
 
 
 }
