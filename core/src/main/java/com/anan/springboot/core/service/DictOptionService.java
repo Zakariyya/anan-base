@@ -18,9 +18,11 @@ public interface DictOptionService{
 
   List<DictOption> findAllByDictTypeAndOptionValue(String dicType,String optionValue);
 
-  List<DictOption> findAllByDictTypeAAndK1(String dicType,String k1);
+  List<DictOption> findAllByDictTypeAndK1(String dicType,String k1);
 
-  List<DictOption> findAllByDictTypeAAndK2(String dicType,String k2);
+  List<DictOption> findAllByDictTypeAndK2(String dicType,String k2);
+
+  DictOption save(DictOption data);
 
 
 }

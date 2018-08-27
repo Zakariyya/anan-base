@@ -3,9 +3,12 @@ package com.anan.springboot.content.controller;
 import com.anan.springboot.content.form.CategoryForm;
 import com.anan.springboot.content.orm.Category;
 import com.anan.springboot.content.service.CategoryService;
+import com.anan.springboot.core.CoreTable;
+import com.anan.springboot.core.enums.EnabledEnum;
 import com.anan.springboot.core.enums.ResultEnum;
 import com.anan.springboot.core.exception.CoreException;
 import com.anan.springboot.core.orm.ResponseResult;
+import com.anan.springboot.core.service.DictOptionService;
 import com.anan.springboot.core.util.ResultVOUtil;
 import com.anan.springboot.core.vo.ResultVO;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +18,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author yaokunyi
@@ -28,6 +33,8 @@ public class CategoryController {
 
   @Autowired
   private CategoryService categoryService;
+  @Autowired
+  private DictOptionService dictOptionService;
 
   /**
    * findAll
@@ -104,6 +111,16 @@ public class CategoryController {
     return ResultVOUtil.success();
   }
 
-
+  /**
+   * relation
+   * @return
+   */
+  @GetMapping(path = "/relation")
+  public ResultVO relation() {
+    Map<String, Object> data = new HashMap<String, Object>();
+    data.put("enabled", EnabledEnum.relation());
+    data.put("categoryType", this.dictOptionService.listByTypeForRelation(CoreTable.category));
+    return ResultVOUtil.success(data);
+  }
 
 }

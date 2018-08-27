@@ -36,9 +36,6 @@ public class CommentController {
   @Autowired
   private CommentService commentService;
 
-  @Autowired
-  private DictOptionService dictOptionService;
-
   /**
    * findAll
    * @return ResultVO<Comment2CommentDto></>
@@ -118,17 +115,7 @@ public class CommentController {
     return ResultVOUtil.success();
   }
 
-  /**
-   * relation
-   * @return
-   */
-  @GetMapping(path = "/relation")
-  public ResultVO relation() {
-    Map<String, Object> data = new HashMap<String, Object>();
-    data.put("enabled", EnabledEnum.relation());
-    data.put("shiftTypeId", this.dictOptionService.listByTypeForRelation(CoreTable.comment));
-    return ResultVOUtil.success(data);
-  }
+
 
 
 }

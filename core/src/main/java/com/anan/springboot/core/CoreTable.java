@@ -12,4 +12,8 @@ public interface CoreTable {
 
   String comment="comment";
 
+  String category = "content_category";
+
+  String content = "content_content";
+
 }

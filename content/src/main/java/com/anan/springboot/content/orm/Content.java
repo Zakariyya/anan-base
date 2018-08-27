@@ -1,5 +1,6 @@
 package com.anan.springboot.content.orm;
 
+import com.anan.springboot.core.CoreTable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
@@ -16,7 +17,7 @@ import java.util.Date;
  * @author yaokunyi
  * Created on 2018/8/23.
  */
-@Entity
+@Entity(name = CoreTable.content)
 @Data
 @DynamicUpdate
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})

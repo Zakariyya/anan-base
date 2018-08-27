@@ -21,21 +21,38 @@ public class DictOptionServiceImpl implements DictOptionService {
 
   @Override
   public List<DictOption> listByTypeForRelation(String dicType) {
+    DictOption data = new DictOption();
+    data.setDictType(dicType);
     return dictOptionRepository.findAllByDictType(dicType);
   }
 
   @Override
   public List<DictOption> findAllByDictTypeAndOptionValue(String dicType, String optionValue) {
-    return dictOptionRepository.findAllByDictTypeAndOptionValue(dicType,optionValue );
+    DictOption data = new DictOption();
+    data.setDictType(dicType);
+    data.setOptionValue(optionValue);
+    return dictOptionRepository.findAllByDictTypeAndOptionValue(dicType, optionValue);
   }
 
   @Override
-  public List<DictOption> findAllByDictTypeAAndK1(String dicType,String k1) {
-    return dictOptionRepository.findAllByDictTypeAAndK1(dicType,k1);
+  public List<DictOption> findAllByDictTypeAndK1(String dicType,String k1) {
+    DictOption data = new DictOption();
+    data.setDictType(dicType);
+    data.setK1(k1);
+    return dictOptionRepository.findAllByDictTypeAndK1(dicType,k1);
   }
 
   @Override
-  public List<DictOption> findAllByDictTypeAAndK2(String dicType,String k2) {
-    return dictOptionRepository.findAllByDictTypeAAndK2(dicType,k2);
+  public List<DictOption> findAllByDictTypeAndK2(String dicType,String k2) {
+    DictOption data = new DictOption();
+    data.setDictType(dicType);
+    data.setK2(k2);
+    return dictOptionRepository.findAllByDictTypeAndK2(dicType,k2);
+  }
+
+  @Override
+  public DictOption save(DictOption data) {
+    //the DictOption.dict_type is exist in the config.
+    return dictOptionRepository.save(data);
   }
 }

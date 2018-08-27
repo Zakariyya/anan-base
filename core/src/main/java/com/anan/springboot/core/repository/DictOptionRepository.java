@@ -16,12 +16,20 @@ public interface  DictOptionRepository extends JpaRepository<DictOption, Integer
 
   List<DictOption> findAllByDictTypeAndOptionValue(String dictType, String optionValue);
 
-  List<DictOption> findAllByDictTypeAAndK1(String dictType, String k1);
+  List<DictOption> findAllByDictTypeAndK1(String dictType, String k1);
 
-  List<DictOption> findAllByDictTypeAAndK2(String dictType, String k2);
+  List<DictOption> findAllByDictTypeAndK2(String dictType, String k2);
 
 
+/**
+ * List<DictOption> findAllByDictType(DictOption dictType);
 
+ List<DictOption> findAllByDictTypeAndOptionValue(DictOption dictTypeAndOptionValue);
+
+ List<DictOption> findAllByDictTypeAAndK1(DictOption dictTypeAndK1);
+
+ List<DictOption> findAllByDictTypeAAndK2(DictOption dictTypeAndK2);
+ */
 
 
 }
