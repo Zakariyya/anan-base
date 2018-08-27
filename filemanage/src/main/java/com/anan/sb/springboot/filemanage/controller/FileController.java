@@ -6,8 +6,11 @@ import com.anan.sb.springboot.filemanage.form.FileForm;
 import com.anan.sb.springboot.filemanage.orm.File;
 import com.anan.sb.springboot.filemanage.service.FileService;
 import com.anan.sb.springboot.filemanage.util.FileUtil;
+import com.anan.springboot.core.CoreTable;
+import com.anan.springboot.core.enums.EnabledEnum;
 import com.anan.springboot.core.exception.CoreException;
 import com.anan.springboot.core.orm.ResponseResult;
+import com.anan.springboot.core.service.DictOptionService;
 import com.anan.springboot.core.util.ResultVOUtil;
 import com.anan.springboot.core.vo.ResultVO;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +27,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author anan
@@ -40,6 +45,11 @@ public class FileController {
 
   @Autowired
   private FileConfig fileConfig;
+
+  @Autowired
+  private DictOptionService dictOptionService;
+
+
 
   /**
    * findAll
@@ -174,6 +184,16 @@ public class FileController {
     return null;
   }
 
-
+  /**
+   * relation
+   * @return
+   */
+  @GetMapping(path = "/relation")
+  public ResultVO relation() {
+    Map<String, Object> data = new HashMap<String, Object>();
+    data.put("enabled", EnabledEnum.relation());
+    data.put("fileType", this.dictOptionService.listByTypeForRelation(CoreTable.file));
+    return ResultVOUtil.success(data);
+  }
 
 }
