@@ -1,12 +1,12 @@
 package com.anan.sb.springboot.filemanage.controller;
 
+import com.anan.sb.springboot.FileTable;
 import com.anan.sb.springboot.filemanage.config.FileConfig;
 import com.anan.sb.springboot.filemanage.enums.ResultEnum;
 import com.anan.sb.springboot.filemanage.form.FileForm;
 import com.anan.sb.springboot.filemanage.orm.File;
 import com.anan.sb.springboot.filemanage.service.FileService;
 import com.anan.sb.springboot.filemanage.util.FileUtil;
-import com.anan.springboot.core.CoreTable;
 import com.anan.springboot.core.enums.EnabledEnum;
 import com.anan.springboot.core.exception.CoreException;
 import com.anan.springboot.core.orm.ResponseResult;
@@ -192,7 +192,7 @@ public class FileController {
   public ResultVO relation() {
     Map<String, Object> data = new HashMap<String, Object>();
     data.put("enabled", EnabledEnum.relation());
-    data.put("fileType", this.dictOptionService.listByTypeForRelation(CoreTable.file));
+    data.put("fileType", this.dictOptionService.listByTypeForRelation(FileTable.file));
     return ResultVOUtil.success(data);
   }
 

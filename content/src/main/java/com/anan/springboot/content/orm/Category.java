@@ -1,14 +1,12 @@
 package com.anan.springboot.content.orm;
 
-import com.anan.springboot.core.CoreTable;
+import com.anan.springboot.content.ContentTable;
 import com.anan.springboot.core.orm.DictOption;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -23,7 +21,7 @@ import java.util.Date;
  * @author yaokunyi
  * Created on 2018/8/23.
  */
-@Entity(name = CoreTable.category)
+@Entity(name = ContentTable.category)
 @Data
 @DynamicUpdate
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -32,6 +30,7 @@ public class Category implements Serializable {
   private static final long serialVersionUID = 1912706247667523727L;
 
   @Id
+  @GeneratedValue(strategy= GenerationType.IDENTITY)
   @Column(name="id")
   private Integer id;
 

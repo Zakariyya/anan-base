@@ -1,9 +1,9 @@
 package com.anan.springboot.content.controller;
 
+import com.anan.springboot.content.ContentTable;
 import com.anan.springboot.content.form.CategoryForm;
 import com.anan.springboot.content.orm.Category;
 import com.anan.springboot.content.service.CategoryService;
-import com.anan.springboot.core.CoreTable;
 import com.anan.springboot.core.enums.EnabledEnum;
 import com.anan.springboot.core.enums.ResultEnum;
 import com.anan.springboot.core.exception.CoreException;
@@ -119,7 +119,7 @@ public class CategoryController {
   public ResultVO relation() {
     Map<String, Object> data = new HashMap<String, Object>();
     data.put("enabled", EnabledEnum.relation());
-    data.put("categoryType", this.dictOptionService.listByTypeForRelation(CoreTable.category));
+    data.put("categoryType", this.dictOptionService.listByTypeForRelation(ContentTable.category));
     return ResultVOUtil.success(data);
   }
 

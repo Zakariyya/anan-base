@@ -6,14 +6,7 @@ package com.anan.springboot.core;
  */
 public interface CoreTable {
 
+  /*example*/
   String dictOption="dict_option";
-
-  String file="file_file";
-
-  String comment="comment";
-
-  String category = "content_category";
-
-  String content = "content_content";
 
 }

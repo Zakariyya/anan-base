@@ -80,7 +80,6 @@ public class FileServiceImpl implements FileService {
   @Override
   public void delete(String id, ResponseResult result) {
     String[] ids = id.split(",");
-    //做循环删除，若文件删除失败报出异常直接 略过处理，不做回滚
     //foreach delete, if failure? jump in catch add message,	and then continue
     for (String sid : ids) {
       try{

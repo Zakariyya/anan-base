@@ -1,6 +1,6 @@
 package com.anan.sb.springboot.filemanage.orm;
 
-import com.anan.springboot.core.CoreTable;
+import com.anan.sb.springboot.FileTable;
 import com.anan.springboot.core.orm.DictOption;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -24,7 +24,7 @@ import java.util.Date;
  * @author anan
  * Created on 2018/8/18.
  */
-@Table(name= CoreTable.file)
+@Table(name= FileTable.file)
 @Entity
 @Data
 @DynamicUpdate

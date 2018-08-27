@@ -1,5 +1,6 @@
 package com.anan.springboot.comment.orm;
 
+import com.anan.springboot.comment.CommentTable;
 import com.anan.springboot.core.CoreTable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
@@ -15,7 +16,7 @@ import java.util.Date;
  * @author yaokunyi
  * Created on 2018/8/22.
  */
-@Entity(name = CoreTable.comment)
+@Entity(name = CommentTable.comment)
 @Data
 @DynamicUpdate
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
