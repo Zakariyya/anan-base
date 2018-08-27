@@ -6,9 +6,14 @@ package com.anan.springboot.auth;
  */
 public interface AuthTable {
 
-  String authUser = "auth_user";
+  String user = "auth_user";
 
-  String authRole = "auth_role";
+  String role = "auth_role";
+
+  String permission = "auth_permission";
+
+  /*中间表*/
+  String userAndRole = "auth_user_role";
 
 
 }

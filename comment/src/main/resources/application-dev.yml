@@ -16,6 +16,3 @@ server:
   port: 8086
   servlet:
     context-path: /comment
-
-fileConfig:
-  uploadPath: d:/

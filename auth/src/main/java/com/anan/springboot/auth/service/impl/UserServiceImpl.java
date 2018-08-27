@@ -1,7 +1,8 @@
-package com.anan.springboot.auth.service;
+package com.anan.springboot.auth.service.impl;
 
 import com.anan.springboot.auth.orm.User;
 import com.anan.springboot.auth.repository.UserRepository;
+import com.anan.springboot.auth.service.UserService;
 import com.anan.springboot.core.exception.CoreException;
 import com.anan.springboot.core.orm.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,11 @@ public class UserServiceImpl implements UserService {
   @Override
   public List<User> findAll() {
     return userRepository.findAll();
+  }
+
+  @Override
+  public User findOne(Integer id) {
+    return userRepository.findById(id).get();
   }
 
   @Override
@@ -47,4 +53,6 @@ public class UserServiceImpl implements UserService {
       }
     }
   }
+
+
 }

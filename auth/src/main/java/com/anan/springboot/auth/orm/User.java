@@ -2,19 +2,22 @@ package com.anan.springboot.auth.orm;
 
 import com.anan.springboot.auth.AuthTable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.validator.constraints.CodePointLength;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * @author yaokunyi
  * Created on 2018/8/27.
  */
-@Entity(name= AuthTable.authUser)
+@Entity(name= AuthTable.user)
 @Data
 @DynamicUpdate
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -27,26 +30,26 @@ public class User implements Serializable {
   @GeneratedValue(strategy= GenerationType.IDENTITY)
   private Integer id;
 
-  @ManyToOne(cascade = CascadeType.REFRESH)
-  @JoinColumn(name = "role_id")
-  private Role roleId;
-
   @Column(name = "account")
   private String account;
 
   @Column(name = "password")
   private String password;
 
-  @Column(name = "name")
-  private String name;
+//  @Column(name = "name")
+//  private String name;
+//
+//  @Column(name = "sex")
+//  private Integer sex;
+//
+//  @Column(name = "email")
+//  private String email;
+//
+//  @Column(name = "phone")
+//  private String phone;
 
-  @Column(name = "sex")
-  private Integer sex;
 
-  @Column(name = "email")
-  private String email;
 
-  @Column(name = "phone")
-  private String phone;
+
 
 }

@@ -17,5 +17,3 @@ server:
   servlet:
     context-path: /content
 
-fileConfig:
-  uploadPath: d:/
