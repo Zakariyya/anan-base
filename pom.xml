@@ -80,6 +80,7 @@
         <module>core</module>
         <module>filemanage</module>
         <module>comment</module>
+        <module>auth</module>
     </modules>
 
     <build>

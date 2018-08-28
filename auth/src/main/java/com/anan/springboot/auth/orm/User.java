@@ -20,7 +20,6 @@ import java.util.UUID;
 @Entity(name= AuthTable.user)
 @Data
 @DynamicUpdate
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User implements Serializable {
 
   private static final long serialVersionUID = 6650020328552169838L;
