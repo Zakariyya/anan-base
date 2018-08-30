@@ -11,6 +11,7 @@ import com.anan.springboot.core.repository.DictOptionRepository;
 import com.anan.springboot.core.util.VerifyForm;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,7 +45,7 @@ public class FileServiceImpl implements FileService {
   public File save(FileForm form) {
     File data = new File();
 
-    DictOption fileType = dictOptionRepository.findById(form.getFileTypeId()).get();
+    val fileType = dictOptionRepository.findById(form.getFileTypeId()).get();
     data.setFileType(fileType);
     if (null != form.getParentId()) {
       data.setParent(findOne(form.getParentId()));

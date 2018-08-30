@@ -15,6 +15,11 @@ import javax.persistence.*;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class UserAndRole {
 
+  @Id
+  @Column(name = "id")
+  @GeneratedValue(strategy= GenerationType.IDENTITY)
+  private Integer id;
+
   @JoinColumn(name="user_id")
   @ManyToOne(cascade = CascadeType.REFRESH, optional = true, fetch = FetchType.EAGER)
   private User user;
