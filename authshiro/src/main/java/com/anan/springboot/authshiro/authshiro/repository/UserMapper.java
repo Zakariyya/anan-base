@@ -1,4 +1,4 @@
-package com.anan.springboot.authshiro.authshiro.dao;
+package com.anan.springboot.authshiro.authshiro.repository;
 
 import com.urundp.desktop.vda.auth.entity.Role;
 import com.urundp.desktop.vda.auth.entity.User;

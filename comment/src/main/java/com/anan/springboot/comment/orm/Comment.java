@@ -29,7 +29,7 @@ public class Comment implements Serializable {
   private String id;
 
   /**
-   * 故意不用对象
+   * 故意不用对象，担心性能
    */
 //  @ManyToOne(cascade = CascadeType.REFRESH)
   @JoinColumn(name = "parent_id")

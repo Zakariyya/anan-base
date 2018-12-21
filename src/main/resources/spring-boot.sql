@@ -70,6 +70,78 @@ CREATE TABLE `auth_user_role` (
 
 /*Data for the table `auth_user_role` */
 
+/*Table structure for table `authshiro_user` */
+
+DROP TABLE IF EXISTS `authshiro_user`;
+
+CREATE TABLE `authshiro_user` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `LOGIN_NAME` varchar(20) NOT NULL DEFAULT '' COMMENT '全名',
+  `NAME` varchar(20) NOT NULL DEFAULT '' COMMENT '名字',
+  `PASSWORD` varchar(255) NOT NULL DEFAULT '' COMMENT '密码',
+  `SALT` varchar(255) NOT NULL COMMENT '加盐值',
+  `BIRTHDAY` varchar(32) DEFAULT NULL COMMENT '生日',
+  `GENDER` smallint(6) DEFAULT NULL COMMENT '性别',
+  `EMAIL` varchar(128) DEFAULT NULL COMMENT '邮箱',
+  `PHONE` varchar(20) DEFAULT NULL COMMENT '电话',
+  `CREATE_DATE` varchar(32) DEFAULT NULL COMMENT '建立时间',
+  `LOGIN_COUNT` int(11) DEFAULT NULL COMMENT '登录次数',
+  `PREVIOUS_VISIT` varchar(32) DEFAULT NULL COMMENT '上次访问时间',
+  `LAST_VISIT` varchar(32) DEFAULT NULL COMMENT '最后登录时间',
+  `ROLE` varchar(64) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=139481 DEFAULT CHARSET=utf8;
+
+/*Data for the table `authshiro_user` */
+
+insert  into `authshiro_user`(`ID`,`LOGIN_NAME`,`NAME`,`PASSWORD`,`SALT`,`BIRTHDAY`,`GENDER`,`EMAIL`,`PHONE`,`CREATE_DATE`,`LOGIN_COUNT`,`PREVIOUS_VISIT`,`LAST_VISIT`,`ROLE`) values 
+(98,'admin','ADMIN','cbb5d07ea0d7a9d11d74c636002655f5','3af23c18-c953-458f-b2cb-7ea83ccb34ff','1998-01-08',1,'2925012005@qq.com','15178967275','2018-01-26 16:09:55',NULL,NULL,NULL,'ADMIN'),
+(139456,'yaokunyi','姚坤逸','4ddffeeebe1fe8abc5898979310990dd','3701be05-6cf5-447a-80f6-0eb47f402fff','2018-08-08',1,'yaokunyi@urun.com','13714022222','2018-12-09 21:27:31',NULL,NULL,NULL,'USER'),
+(139469,'chenzhou','陈周','cbb5d07ea0d7a9d11d74c636002655f5','3af23c18-c953-458f-b2cb-7ea83ccb34ff','1998-01-08',1,'2925012005@qq.com','15178967275','2018-01-26 16:09:55',NULL,NULL,NULL,'ADMIN'),
+(139470,'yanganwen','阳安文','cbb5d07ea0d7a9d11d74c636002655f5','3af23c18-c953-458f-b2cb-7ea83ccb34ff','1998-01-08',1,'2925012005@qq.com','15178967275','2018-01-26 16:09:55',NULL,NULL,NULL,'USER'),
+(139471,'chenjiandeng','陈建登','cbb5d07ea0d7a9d11d74c636002655f5','3af23c18-c953-458f-b2cb-7ea83ccb34ff','1998-01-08',1,'2925012005@qq.com','15178967275','2018-01-26 16:09:55',NULL,NULL,NULL,'USER'),
+(139472,'fuyan','付艳','cbb5d07ea0d7a9d11d74c636002655f5','3af23c18-c953-458f-b2cb-7ea83ccb34ff','1998-01-08',1,'2925012005@qq.com','15178967275','2018-01-26 16:09:55',NULL,NULL,NULL,'USER'),
+(139473,'yuanguangyi','袁广义','cbb5d07ea0d7a9d11d74c636002655f5','3af23c18-c953-458f-b2cb-7ea83ccb34ff','1998-01-08',1,'2925012005@qq.com','15178967275','2018-01-26 16:09:55',NULL,NULL,NULL,'USER'),
+(139474,'huanghaipeng','黄海鹏','cbb5d07ea0d7a9d11d74c636002655f5','3af23c18-c953-458f-b2cb-7ea83ccb34ff','1998-01-08',1,'2925012005@qq.com','15178967275','2018-01-26 16:09:55',NULL,NULL,NULL,'USER'),
+(139475,'liusiyuan','刘思源','cbb5d07ea0d7a9d11d74c636002655f5','3af23c18-c953-458f-b2cb-7ea83ccb34ff','1998-01-08',1,'2925012005@qq.com','15178967275','2018-01-26 16:09:55',NULL,NULL,NULL,'USER'),
+(139476,'liunaifeng','刘乃风','cbb5d07ea0d7a9d11d74c636002655f5','3af23c18-c953-458f-b2cb-7ea83ccb34ff','1998-01-08',1,'2925012005@qq.com','15178967275','2018-01-26 16:09:55',NULL,NULL,NULL,'USER'),
+(139477,'zhuxiangyu','朱祥玉','cbb5d07ea0d7a9d11d74c636002655f5','3af23c18-c953-458f-b2cb-7ea83ccb34ff','1998-01-08',1,'2925012005@qq.com','15178967275','2018-01-26 16:09:55',NULL,NULL,NULL,'USER'),
+(139478,'dulangxian','杜朗贤','cbb5d07ea0d7a9d11d74c636002655f5','3af23c18-c953-458f-b2cb-7ea83ccb34ff','1998-01-08',1,'2925012005@qq.com','15178967275','2018-01-26 16:09:55',NULL,NULL,NULL,'USER'),
+(139479,'linminling','林敏玲','cbb5d07ea0d7a9d11d74c636002655f5','3af23c18-c953-458f-b2cb-7ea83ccb34ff','1998-01-08',1,'2925012005@qq.com','15178967275','2018-01-26 16:09:55',NULL,NULL,NULL,'USER'),
+(139480,'shijingyong','石锦勇','cbb5d07ea0d7a9d11d74c636002655f5','3af23c18-c953-458f-b2cb-7ea83ccb34ff','1998-01-08',1,'2925012005@qq.com','15178967275','2018-01-26 16:09:55',NULL,NULL,NULL,'USER');
+
+/*Table structure for table `authshiro_usergroup` */
+
+DROP TABLE IF EXISTS `authshiro_usergroup`;
+
+CREATE TABLE `authshiro_usergroup` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `name` varchar(64) NOT NULL COMMENT '用户组名称',
+  `p_id` int(11) NOT NULL COMMENT '父级id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+
+/*Data for the table `authshiro_usergroup` */
+
+insert  into `authshiro_usergroup`(`id`,`name`,`p_id`) values 
+(1,'云润大数据',0);
+
+/*Table structure for table `authshiro_usergroup_user` */
+
+DROP TABLE IF EXISTS `authshiro_usergroup_user`;
+
+CREATE TABLE `authshiro_usergroup_user` (
+  `usergroup_id` int(11) NOT NULL,
+  `user` varchar(64) NOT NULL,
+  PRIMARY KEY (`usergroup_id`,`user`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `authshiro_usergroup_user` */
+
+insert  into `authshiro_usergroup_user`(`usergroup_id`,`user`) values 
+(1,'lbb'),
+(1,'test');
+
 /*Table structure for table `comment` */
 
 DROP TABLE IF EXISTS `comment`;

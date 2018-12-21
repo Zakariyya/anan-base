@@ -1,4 +1,4 @@
-package com.anan.springboot.authshiro.authshiro.dao;
+package com.anan.springboot.authshiro.authshiro.repository;
 
 import java.util.List;
 import java.util.Map;

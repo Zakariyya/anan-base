@@ -1,10 +1,5 @@
-package com.anan.springboot.authshiro.authshiro.dao;
+package com.anan.springboot.authshiro.authshiro.repository;
 
-import com.urundp.desktop.vda.auth.entity.UsergroupUser;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 

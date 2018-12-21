@@ -1,4 +1,4 @@
-package com.anan.springboot.authshiro.authshiro.rest;
+package com.anan.springboot.authshiro.authshiro.controller;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;

@@ -1,6 +1,6 @@
-package com.anan.springboot.authshiro.authshiro.rest;
+package com.anan.springboot.authshiro.authshiro.controller;
 
-import com.anan.springboot.authshiro.authshiro.entity.User;
+import com.anan.springboot.authshiro.authshiro.orm.User;
 import com.anan.springboot.authshiro.authshiro.model.PasswordModel;
 import com.anan.springboot.authshiro.authshiro.model.UserInfoModel;
 import com.anan.springboot.authshiro.authshiro.service.UserService;

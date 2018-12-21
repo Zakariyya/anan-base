@@ -59,7 +59,7 @@ public class File implements Serializable {
   private String md5;
 
   /**
-   * it's from com.anan.springboot.core.orm.DictOption.
+   * it's from com.anan.springboot.core.repository.DictOption.
    * if the DictOption return is null, return a exception
    */
   @JoinColumn(name="file_file_type")

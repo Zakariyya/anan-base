@@ -1,7 +1,7 @@
 package com.anan.springboot.authshiro.authshiro.model;
 
 
-import com.anan.springboot.authshiro.authshiro.entity.Role;
+import com.anan.springboot.authshiro.authshiro.orm.Role;
 
 import java.io.Serializable;
 

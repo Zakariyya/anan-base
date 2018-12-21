@@ -1,4 +1,4 @@
-package com.anan.springboot.authshiro.authshiro.entity;
+package com.anan.springboot.authshiro.authshiro.orm;
 
 import java.io.Serializable;
 
