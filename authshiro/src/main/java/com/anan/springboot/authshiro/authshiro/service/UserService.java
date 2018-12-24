@@ -5,8 +5,11 @@ import com.anan.springboot.authshiro.authshiro.orm.User;
 import com.anan.springboot.authshiro.authshiro.model.PasswordModel;
 import com.anan.springboot.authshiro.authshiro.model.UserAuthModel;
 import com.anan.springboot.authshiro.authshiro.model.UserInfoModel;
+import lombok.Data;
+
 import java.util.List;
 
+@Data
 public interface UserService {
 
 	/**

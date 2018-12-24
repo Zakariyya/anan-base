@@ -1,6 +1,6 @@
 package com.anan.springboot.authshiro.authshiro.service;
 
-import com.urundp.desktop.vda.auth.entity.UsergroupUser;
+import com.anan.springboot.authshiro.authshiro.orm.UsergroupUser;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.anan.springboot.authshiro.authshiro.shiro;
 
-import com.urundp.desktop.vda.auth.service.UserService;
+import com.anan.springboot.authshiro.authshiro.service.UserService;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
