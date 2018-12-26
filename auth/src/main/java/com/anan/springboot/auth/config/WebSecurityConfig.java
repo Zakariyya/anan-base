@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.stereotype.Component;
 
 /**
  * @author yaokunyi
@@ -27,7 +28,18 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    super.configure(http);
+//    super.configure(http);
+    http
+            .authorizeRequests()
+            .anyRequest().authenticated()
+            .and()
+            .formLogin()
+            //设置登陆页面
+            .loginPage("/user/login")
+            //允许所有人进行访问此路径
+            .permitAll();
+    //关闭csrf保护
+//                    .and().csrf().disable();
   }
 
   @Override
@@ -39,7 +51,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       .withUser("admin").password("{noop}admin").roles("ADMIN", "USER")
       .and()
       .withUser("user").password("{noop}user").roles("USER");
+
   }
+
+
+
+
+
+
 
 
 

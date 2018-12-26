@@ -28,6 +28,20 @@ public class UserController {
   @Autowired
   private UserService userService;
 
+
+
+  /**
+   * findAll
+   * @return ResultVO<User2UserDto></>
+   */
+  @GetMapping("/login")
+  public ResultVO login(){
+    List<User> all = userService.findAll();
+//    return ResultVOUtil.success(all);
+    return ResultVOUtil.success("aaaaaaaa");
+  }
+
+
   /**
    * findAll
    * @return ResultVO<User2UserDto></>
@@ -48,22 +62,22 @@ public class UserController {
     return ResultVOUtil.success(userService.findOne(id));
   }
 
-  /**
-   * save
-   * @param data :UserDto pojo
-   * @return ResultVO
-   */
-  @ResponseBody
-  @PostMapping(value = "",produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResultVO save(@Valid @RequestBody User data, BindingResult bindingResult){
-    if (bindingResult.hasErrors()) {
-      log.error("【权限管理-用户】参数不正确, User={}", data);
-      throw new CoreException(ResultEnum.PARAM_ERROR.getCode(),
-              bindingResult.getFieldError().getDefaultMessage());
-    }
-    userService.save(data);
-    return ResultVOUtil.success();
-  }
+//  /**
+//   * save
+//   * @param data :UserDto pojo
+//   * @return ResultVO
+//   */
+//  @ResponseBody
+//  @PostMapping(value = "",produces = MediaType.APPLICATION_JSON_VALUE)
+//  public ResultVO save(@Valid @RequestBody User data, BindingResult bindingResult){
+//    if (bindingResult.hasErrors()) {
+//      log.error("【权限管理-用户】参数不正确, User={}", data);
+//      throw new CoreException(ResultEnum.PARAM_ERROR.getCode(),
+//              bindingResult.getFieldError().getDefaultMessage());
+//    }
+//    userService.save(data);
+//    return ResultVOUtil.success();
+//  }
 
 
 }
