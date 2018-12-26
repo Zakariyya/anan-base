@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import java.util.List;
 
 /**
- * @author yaokunyi
+ * @author anan
  * Created on 2018/8/24.
  */
 public interface CategoryRepository  extends JpaRepository<Category, Integer>, JpaSpecificationExecutor<DictOption> {

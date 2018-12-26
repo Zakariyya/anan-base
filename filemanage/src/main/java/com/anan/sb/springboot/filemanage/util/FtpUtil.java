@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author yaokunyi
+ * @author anan
  * Created on 2018/8/20.
  */
 public class FtpUtil {

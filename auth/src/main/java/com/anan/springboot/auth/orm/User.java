@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * @author yaokunyi
+ * @author anan
  * Created on 2018/8/27.
  */
 @Entity(name= AuthTable.user)

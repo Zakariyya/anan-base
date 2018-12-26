@@ -5,7 +5,7 @@ import com.anan.springboot.core.orm.ResponseResult;
 import org.springframework.stereotype.Component;
 
 /**
- * @author yaokunyi
+ * @author anan
  * Created on 2018/8/24.
  */
 @Component

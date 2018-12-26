@@ -1,8 +1,8 @@
 package com.anan.springboot.authshiro.authshiro;
 
 /**
- * @author yaokunyi
- * Created by yaokunyi on 2018/12/21.
+ * @author anan
+ * Created by anan on 2018/12/21.
  */
 public interface AuthShiroTable {
 

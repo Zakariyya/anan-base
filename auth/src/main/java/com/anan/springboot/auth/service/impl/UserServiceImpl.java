@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @author yaokunyi
+ * @author anan
  * Created on 2018/8/27.
  */
 @Service
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public void delete(String id, ResponseResult result) {
+  public ResponseResult delete(String id, ResponseResult result) {
 
     String[] ids = id.split(",");
     //foreach delete, if failure? jump in catch add message,	and then continue
@@ -52,6 +52,7 @@ public class UserServiceImpl implements UserService {
         result.addMessage("用户名为"+userRepository.findById(Integer.parseInt(sid)).get().getAccount()+"删除失败");
       }
     }
+    return result;
   }
 
 

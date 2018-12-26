@@ -3,7 +3,7 @@ package com.anan.springboot.core.enums;
 import lombok.Getter;
 
 /**
- * @author yaokunyi
+ * @author anan
  * Created on 2018/8/23.
  */
 @Getter

@@ -1,15 +1,25 @@
 package com.anan.springboot.auth.config;
 
+import com.anan.springboot.auth.security.SecurityUser;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 /**
- * @author yaokunyi
+ * @author anan
  * Created on 2018/8/27.
  *
  * 简要说明：
@@ -25,19 +35,20 @@ import org.springframework.stereotype.Component;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
+@Slf4j
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-//    super.configure(http);
-    http
-            .authorizeRequests()
-            .anyRequest().authenticated()
-            .and()
-            .formLogin()
-            //设置登陆页面
-            .loginPage("/user/login")
-            //允许所有人进行访问此路径
-            .permitAll();
+    super.configure(http);
+//    http
+//            .authorizeRequests()
+//            .anyRequest().authenticated()
+//            .and()
+//            .formLogin()
+//            //设置登陆页面
+//            .loginPage("/user/login")
+//            //允许所有人进行访问此路径
+//            .permitAll();
     //关闭csrf保护
 //                    .and().csrf().disable();
   }
@@ -52,6 +63,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       .and()
       .withUser("user").password("{noop}user").roles("USER");
 
+  }
+
+  @Bean
+  public LogoutSuccessHandler logoutSuccessHandler() { //登出处理
+    return new LogoutSuccessHandler() {
+      @Override
+      public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
+        try {
+          SecurityUser user = (SecurityUser) authentication.getPrincipal();
+          log.info("USER : " + user.getUsername() + " LOGOUT SUCCESS !  ");
+        } catch (Exception e) {
+          log.info("LOGOUT EXCEPTION , e : " + e.getMessage());
+        }
+        httpServletResponse.sendRedirect("/login");
+      }
+    };
   }
 
 

@@ -1,6 +1,7 @@
 package com.anan.springboot.core.vo;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 
@@ -9,7 +10,8 @@ import java.io.Serializable;
  * @author anan
  * Create on 2018/8/18
  */
-//@Data
+@Getter
+@Setter
 public class ResultVO<T> implements Serializable {
 
   private static final long serialVersionUID = -1254223930581160279L;
@@ -23,33 +25,9 @@ public class ResultVO<T> implements Serializable {
   @Override
   public String toString() {
     return "ResultVO{" +
-            "code=" + code +
-            ", msg='" + msg + '\'' +
-            ", data=" + data +
+              "code=" + code +
+              ", msg='" + msg + '\'' +
+              ", data=" + data +
             '}';
-  }
-
-  public Integer getCode() {
-    return code;
-  }
-
-  public void setCode(Integer code) {
-    this.code = code;
-  }
-
-  public String getMsg() {
-    return msg;
-  }
-
-  public void setMsg(String msg) {
-    this.msg = msg;
-  }
-
-  public T getData() {
-    return data;
-  }
-
-  public void setData(T data) {
-    this.data = data;
   }
 }

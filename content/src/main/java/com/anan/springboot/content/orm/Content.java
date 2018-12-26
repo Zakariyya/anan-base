@@ -14,7 +14,7 @@ import java.util.Date;
  *
  * it can be a ...just give a Category
  *
- * @author yaokunyi
+ * @author anan
  * Created on 2018/8/23.
  */
 @Entity(name = ContentTable.content)

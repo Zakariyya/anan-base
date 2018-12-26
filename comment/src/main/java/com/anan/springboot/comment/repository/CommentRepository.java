@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 /**
- * @author yaokunyi
+ * @author anan
  * Created on 2018/8/22.
  */
 public interface CommentRepository extends JpaRepository<Comment, String>, JpaSpecificationExecutor<Comment> {

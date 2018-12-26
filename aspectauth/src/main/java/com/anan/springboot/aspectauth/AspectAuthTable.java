@@ -1,8 +1,8 @@
 package com.anan.springboot.aspectauth;
 
 /**
- * @author yaokunyi
- * Created by yaokunyi on 2018/8/22.
+ * @author anan
+ * Created by anan on 2018/8/22.
  */
 public interface AspectAuthTable {
 

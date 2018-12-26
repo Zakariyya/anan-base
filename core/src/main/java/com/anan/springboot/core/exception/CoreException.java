@@ -4,7 +4,7 @@ package com.anan.springboot.core.exception;
 import com.anan.springboot.core.enums.ResultEnum;
 
 /**
- * @author yaokunyi
+ * @author anan
  * Created on 2018/8/22.
  */
 public class CoreException extends RuntimeException{

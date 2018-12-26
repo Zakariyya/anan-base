@@ -3,7 +3,7 @@ package com.anan.springboot.core.form;
 import lombok.Data;
 
 /**
- * @author yaokunyi
+ * @author anan
  * for Form ,<T> is the parentId's and id's type
  * Created on 2018/8/24.
  */

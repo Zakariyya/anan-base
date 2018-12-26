@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * @author yaokunyi
+ * @author anan
  * Created on 2018/8/27.
  */
 @Entity(name= AuthTable.role)

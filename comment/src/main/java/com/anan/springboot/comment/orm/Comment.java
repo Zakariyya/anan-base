@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 /** Comment
- * @author yaokunyi
+ * @author anan
  * Created on 2018/8/22.
  */
 @Entity(name = CommentTable.comment)

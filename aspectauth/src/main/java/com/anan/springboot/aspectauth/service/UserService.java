@@ -6,8 +6,8 @@ import com.anan.springboot.core.orm.ResponseResult;
 import java.util.List;
 
 /**
- * @author yaokunyi
- * Created by yaokunyi on 2018/8/27.
+ * @author anan
+ * Created by anan on 2018/8/27.
  */
 public interface UserService {
 

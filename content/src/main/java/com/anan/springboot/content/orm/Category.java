@@ -18,7 +18,7 @@ import java.util.Date;
  * news, announcement,advertise, job ,offers,blog
  * and then the DictOption can CURD,so it can be many type
  *
- * @author yaokunyi
+ * @author anan
  * Created on 2018/8/23.
  */
 @Entity(name = ContentTable.category)

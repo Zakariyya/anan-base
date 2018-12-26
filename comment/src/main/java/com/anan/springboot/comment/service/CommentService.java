@@ -7,7 +7,7 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 /**
- * @author yaokunyi
+ * @author anan
  * Created on 2018/8/22.
  */
 public interface CommentService {
