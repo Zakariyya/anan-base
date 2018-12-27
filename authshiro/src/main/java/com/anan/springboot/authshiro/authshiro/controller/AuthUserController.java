@@ -1,5 +1,6 @@
 package com.anan.springboot.authshiro.authshiro.controller;
 
+import com.anan.springboot.authshiro.authshiro.orm.Role;
 import com.anan.springboot.authshiro.authshiro.orm.User;
 import com.anan.springboot.authshiro.authshiro.model.PasswordModel;
 import com.anan.springboot.authshiro.authshiro.model.UserInfoModel;

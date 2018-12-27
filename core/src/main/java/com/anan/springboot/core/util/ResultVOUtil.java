@@ -37,5 +37,11 @@ public class ResultVOUtil implements Serializable {
     return resultVO;
   }
 
+  public static ResultVO result(Integer code, String msg) {
+    ResultVO resultVO = new ResultVO();
+    resultVO.setCode(code);
+    resultVO.setMsg(msg);
+    return resultVO;aaaaaaaaaaaaa
+  }
 
 }

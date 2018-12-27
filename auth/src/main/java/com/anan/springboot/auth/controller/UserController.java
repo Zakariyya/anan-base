@@ -30,24 +30,11 @@ public class UserController {
   @Autowired
   private UserService userService;
 
-
-
   /**
    * findAll
    * @return ResultVO<User2UserDto></>
    */
-  @GetMapping("/login")
-  public ResultVO login(){
-    List<User> all = userService.findAll();
-    return ResultVOUtil.success("aaaaaaaa");
-  }
-
-
-  /**
-   * findAll
-   * @return ResultVO<User2UserDto></>
-   */
-  @GetMapping("")
+  @GetMapping()
   public ResultVO findAll(){
     List<User> all = userService.findAll();
     return ResultVOUtil.success(all);
@@ -105,8 +92,8 @@ public class UserController {
   @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public ResultVO delete(@PathVariable("id") String id){
     ResponseResult responseResult = new ResponseResult();
-    responseResult = userService.delete(id, responseResult);
-    return
+//    responseResult = ;
+    return userService.delete(id, responseResult);
   }
 
 

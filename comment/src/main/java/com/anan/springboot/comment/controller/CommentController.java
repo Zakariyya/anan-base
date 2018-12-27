@@ -4,9 +4,6 @@ import com.anan.springboot.comment.converter.Comment2CommentDto;
 import com.anan.springboot.comment.dto.CommentDto;
 import com.anan.springboot.comment.orm.Comment;
 import com.anan.springboot.comment.service.CommentService;
-import com.anan.springboot.core.CoreTable;
-import com.anan.springboot.core.service.DictOptionService;
-import com.anan.springboot.core.enums.EnabledEnum;
 import com.anan.springboot.core.enums.ResultEnum;
 import com.anan.springboot.core.exception.CoreException;
 import com.anan.springboot.core.orm.ResponseResult;
@@ -20,9 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author anan
