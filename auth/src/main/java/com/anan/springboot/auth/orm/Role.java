@@ -3,9 +3,11 @@ package com.anan.springboot.auth.orm;
 import com.anan.springboot.auth.AuthTable;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.SortNatural;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * @author anan
@@ -28,6 +30,10 @@ public class Role implements Serializable {
   private String name;
 
 
+  @ManyToMany(fetch = FetchType.LAZY, targetEntity = User.class)
+  @JoinTable(name = AuthTable.user, joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+  @SortNatural
+  private Set<User> users;
 
 
 }

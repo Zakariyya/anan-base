@@ -92,8 +92,7 @@ public class UserController {
   @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public ResultVO delete(@PathVariable("id") String id){
     ResponseResult responseResult = new ResponseResult();
-//    responseResult = ;
-    return userService.delete(id, responseResult);
+    return ResultVOUtil.result(userService.delete(id, responseResult));
   }
 
 

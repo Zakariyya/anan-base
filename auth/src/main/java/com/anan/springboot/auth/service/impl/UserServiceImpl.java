@@ -7,6 +7,7 @@ import com.anan.springboot.core.exception.CoreException;
 import com.anan.springboot.core.orm.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
  * Created on 2018/8/27.
  */
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
   @Autowired
@@ -49,6 +51,7 @@ public class UserServiceImpl implements UserService {
       try{
         userRepository.deleteById(Integer.parseInt(sid));
       }catch (CoreException e){
+        result.setCode(ResponseResult.SUCCESS);
         result.addMessage("用户名为"+userRepository.findById(Integer.parseInt(sid)).get().getAccount()+"删除失败");
       }
     }
