@@ -30,8 +30,8 @@ public class Role implements Serializable {
   private String name;
 
 
-  @ManyToMany(fetch = FetchType.LAZY, targetEntity = User.class)
-  @JoinTable(name = AuthTable.user, joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+  @ManyToMany(fetch = FetchType.EAGER, targetEntity = User.class)
+  @JoinTable(name = AuthTable.userAndRole, joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
   @SortNatural
   private Set<User> users;
 

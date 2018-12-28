@@ -67,7 +67,8 @@ public class User implements Serializable {
   private Date lastTime;
 
 
-  @ManyToMany(fetch = FetchType.LAZY, targetEntity = Role.class)
+
+  @ManyToMany(fetch = FetchType.EAGER, targetEntity = Role.class)
   @JoinTable(name = AuthTable.userAndRole, joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
   @SortNatural
   private Set<Role> roles;

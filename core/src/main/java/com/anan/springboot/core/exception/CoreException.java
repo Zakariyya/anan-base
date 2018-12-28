@@ -2,11 +2,13 @@ package com.anan.springboot.core.exception;
 
 
 import com.anan.springboot.core.enums.ResultEnum;
+import lombok.Data;
 
 /**
  * @author anan
  * Created on 2018/8/22.
  */
+@Data
 public class CoreException extends RuntimeException{
 
   private Integer code;

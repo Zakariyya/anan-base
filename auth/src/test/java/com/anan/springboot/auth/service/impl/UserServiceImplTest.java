@@ -60,6 +60,7 @@ public class UserServiceImplTest {
   public void update() {
     val user = makeUser();
     user.setId(2);
+    user.setEmail("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
     log.info("userService::"+userService.update(user));
 
   }

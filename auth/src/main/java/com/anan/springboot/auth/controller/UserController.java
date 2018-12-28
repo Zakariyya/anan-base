@@ -34,7 +34,7 @@ public class UserController {
    * findAll
    * @return ResultVO<User2UserDto></>
    */
-  @GetMapping()
+  @GetMapping("")
   public ResultVO findAll(){
     List<User> all = userService.findAll();
     return ResultVOUtil.success(all);
@@ -57,7 +57,7 @@ public class UserController {
    * @return ResultVO
    */
   @ResponseBody
-  @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+  @PostMapping("")
   public ResultVO add(@Valid @RequestBody User data, BindingResult bindingResult){
     data.setId(null);
     return save(data, bindingResult);
@@ -70,7 +70,7 @@ public class UserController {
    * @return ResultVO
    */
   @ResponseBody
-  @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+  @PutMapping("")
   public ResultVO save(@Valid @RequestBody User data, BindingResult bindingResult){
     if (bindingResult.hasErrors()) {
       log.error("【权限管理-用户】参数不正确, User={}", data);
@@ -88,8 +88,8 @@ public class UserController {
    * @param id :User primary key
    * @return ResultVO
    */
-  @ResponseBody
-  @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+  @DeleteMapping("/{id}")
+//  @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
   public ResultVO delete(@PathVariable("id") String id){
     ResponseResult responseResult = new ResponseResult();
     return ResultVOUtil.result(userService.delete(id, responseResult));

@@ -1,6 +1,8 @@
 package com.anan.springboot.core.vo;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
@@ -26,8 +28,8 @@ public class ResultVO<T> implements Serializable {
   public String toString() {
     return "ResultVO{" +
               "code=" + code +
-              ", msg='" + msg + '\'' +
-              ", data=" + data +
+              ", data='" + data + '\'' +
+              ", msg=" + msg +
             '}';
   }
 }
