@@ -3,8 +3,8 @@ package com.anan.springboot.aspectauth.service.impl;
 import com.anan.springboot.aspectauth.orm.User;
 import com.anan.springboot.aspectauth.repository.UserRepository;
 import com.anan.springboot.aspectauth.service.UserService;
-import com.anan.springboot.core.exception.CoreException;
-import com.anan.springboot.core.orm.ResponseResult;
+import anan.base.core.exception.CoreException;
+import anan.base.core.orm.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

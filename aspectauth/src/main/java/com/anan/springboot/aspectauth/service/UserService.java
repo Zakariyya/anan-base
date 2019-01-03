@@ -1,7 +1,7 @@
 package com.anan.springboot.aspectauth.service;
 
 import com.anan.springboot.aspectauth.orm.User;
-import com.anan.springboot.core.orm.ResponseResult;
+import anan.base.core.orm.ResponseResult;
 
 import java.util.List;
 
