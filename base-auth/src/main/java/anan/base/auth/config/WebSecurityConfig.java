@@ -5,6 +5,7 @@ import anan.base.auth.repository.UserRepository;
 import anan.base.auth.security.SecurityUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -44,6 +45,10 @@ import java.io.IOException;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 @Slf4j
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+  @Value("${server.servlet.context-path}")
+  String contextPath;
+
   @Override
   protected void configure(HttpSecurity http) throws Exception { //配置策略
 //    super.configure(http);
@@ -58,14 +63,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //            .permitAll();
     //关闭csrf保护
 //                    .and().csrf().disable();
+
+
     http.csrf().disable();
     //logoutSuccessUrl("/login")//使用了logoutSuccessHandler实现了这个功能
     http.authorizeRequests().
             antMatchers("/static/**").permitAll().anyRequest().authenticated().
-            and().formLogin().loginPage("/login").permitAll().successHandler(loginSuccessHandler()).
+            and().formLogin()
+//            .loginPage("/login")
+            .permitAll().successHandler(loginSuccessHandler()).
             and().logout().permitAll().invalidateHttpSession(true).
             deleteCookies("JSESSIONID").logoutSuccessHandler(logoutSuccessHandler()).
-            and().sessionManagement().maximumSessions(10).expiredUrl("/login");
+            and().sessionManagement().maximumSessions(10).expiredUrl(contextPath+"/login");
   }
 
 //  @Override
@@ -115,7 +124,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         } catch (Exception e) {
           log.info("LOGOUT EXCEPTION , e : " + e.getMessage());
         }
-        httpServletResponse.sendRedirect("/login");
+        httpServletResponse.sendRedirect(contextPath+"/login");
       }
     };
   }

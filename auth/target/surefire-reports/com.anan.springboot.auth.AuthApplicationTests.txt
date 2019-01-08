@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: com.anan.springboot.auth.AuthApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.429 s <<< FAILURE! - in com.anan.springboot.auth.AuthApplicationTests
+contextLoads(com.anan.springboot.auth.AuthApplicationTests)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [com.anan.springboot.auth.controller.UserController] from ClassLoader [sun.misc.Launcher$AppClassLoader@6bc7c054]
+Caused by: java.lang.NoClassDefFoundError: com/anan/springboot/core/exception/CoreException
+Caused by: java.lang.ClassNotFoundException: com.anan.springboot.core.exception.CoreException
+

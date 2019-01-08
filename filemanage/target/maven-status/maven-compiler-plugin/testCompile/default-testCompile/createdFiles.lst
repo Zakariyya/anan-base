@@ -1,0 +1,5 @@
+anan\base\filemanage\filemanage\FilemanageApplicationTests.class
+anan\base\filemanage\util\FtpUtilTest.class
+anan\base\filemanage\controller\FileControllerTest.class
+anan\base\filemanage\util\FileUtilTest.class
+anan\base\filemanage\service\impl\FileServiceImplTest.class

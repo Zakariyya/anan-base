@@ -1,0 +1,16 @@
+anan\base\filemanage\util\FtpUtil.class
+anan\base\filemanage\service\FileService.class
+anan\base\filemanage\repository\FileRepository.class
+anan\base\filemanage\FilemanageApplication.class
+anan\base\filemanage\util\FileUtil.class
+anan\base\filemanage\config\WebConfiguration.class
+anan\base\filemanage\enums\ResultEnum.class
+anan\base\filemanage\form\FileForm.class
+anan\base\filemanage\config\FileConfig.class
+anan\base\filemanage\orm\File.class
+anan\base\filemanage\controller\FileController.class
+anan\base\filemanage\service\impl\FileServiceImpl.class
+anan\base\filemanage\FileTable.class
+anan\base\filemanage\converter\FileForm2FileConverter.class
+anan\base\filemanage\config\CORSConfiguration.class
+anan\base\filemanage\config\CORSConfiguration$1.class

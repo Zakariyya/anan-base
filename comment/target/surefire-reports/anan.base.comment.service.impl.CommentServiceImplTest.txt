@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: anan.base.comment.service.impl.CommentServiceImplTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 1.087 s <<< FAILURE! - in anan.base.comment.service.impl.CommentServiceImplTest
+delete(anan.base.comment.service.impl.CommentServiceImplTest)  Time elapsed: 0.052 s  <<< ERROR!
+org.springframework.dao.EmptyResultDataAccessException: No class anan.base.comment.orm.Comment entity with id aaaaaaaaaaaa exists!
+	at anan.base.comment.service.impl.CommentServiceImplTest.delete(CommentServiceImplTest.java:64)
+
+findOne(anan.base.comment.service.impl.CommentServiceImplTest)  Time elapsed: 0.037 s  <<< ERROR!
+java.util.NoSuchElementException: No value present
+	at anan.base.comment.service.impl.CommentServiceImplTest.findOne(CommentServiceImplTest.java:43)
+
+update(anan.base.comment.service.impl.CommentServiceImplTest)  Time elapsed: 0.006 s  <<< ERROR!
+java.util.NoSuchElementException: No value present
+	at anan.base.comment.service.impl.CommentServiceImplTest.update(CommentServiceImplTest.java:56)
+
