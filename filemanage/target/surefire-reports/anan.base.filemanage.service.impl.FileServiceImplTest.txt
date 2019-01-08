@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: anan.base.filemanage.service.impl.FileServiceImplTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.321 s <<< FAILURE! - in anan.base.filemanage.service.impl.FileServiceImplTest
-save(anan.base.filemanage.service.impl.FileServiceImplTest)  Time elapsed: 0.289 s  <<< ERROR!
-java.lang.NullPointerException
-	at anan.base.filemanage.service.impl.FileServiceImplTest.save(FileServiceImplTest.java:32)
-
