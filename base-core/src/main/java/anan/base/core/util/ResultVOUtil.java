@@ -3,6 +3,7 @@ package anan.base.core.util;
 import anan.base.core.enums.ResultEnum;
 import anan.base.core.orm.ResponseResult;
 import anan.base.core.vo.ResultVO;
+import org.springframework.data.domain.Page;
 
 import java.io.Serializable;
 

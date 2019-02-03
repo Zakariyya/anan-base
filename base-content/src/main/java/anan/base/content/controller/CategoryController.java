@@ -13,6 +13,8 @@ import anan.base.core.util.ResultVOUtil;
 import anan.base.core.vo.ResultVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +37,19 @@ public class CategoryController {
   private CategoryService categoryService;
   @Autowired
   private DictOptionService dictOptionService;
+
+
+  /**
+   * findAll by page
+   * @return ResultVO<Category>
+   */
+  @GetMapping("/{page}/{size}")
+  public ResultVO findAll(@PathVariable(value = "page") Integer page,
+                          @PathVariable(value = "size") Integer size){
+    PageRequest request = new PageRequest(page - 1, size);
+    Page<Category> all = categoryService.findAll(request);
+    return ResultVOUtil.success(all);
+  }
 
   /**
    * findAll

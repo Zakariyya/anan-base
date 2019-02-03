@@ -34,8 +34,8 @@ public class ExceptionCatch {
   @ExceptionHandler(DataIntegrityViolationException.class)
   @ResponseBody
   public ResultVO dataIntegrityViolationException(DataIntegrityViolationException e) {
-    log.error("DataIntegrityViolationException.getMessage=>"+e.getMessage());
-    log.error("DataIntegrityViolationException.getCause.getCause.getMessage=>"+e.getCause().getCause().getMessage());
+    log.error("DataIntegrityViolationException.getMessage=>{}",e.getMessage());
+    log.error("DataIntegrityViolationException.getCause.getCause.getMessage=>{}",e.getCause().getCause().getMessage());
 
     if(e.getCause().getCause().getMessage().contains("Duplicate entry") && e.getCause().getCause().getMessage().contains("for key")){
       String[] ids = e.getCause().getCause().getMessage().split("'");
@@ -44,5 +44,21 @@ public class ExceptionCatch {
     }else {
       throw new CoreException(ResultEnum.FAILURE.getCode(), ResultEnum.FAILURE.getMessage());
     }
+  }
+
+  /**
+   * get the DataIntegrityViolationException and catch it
+   * eg:
+   * e.getCause().getCause().getMessage() ==> Duplicate entry 'anan1529' for key 'account'
+   *
+   * @param e
+   * @return
+   */
+  @ExceptionHandler(IllegalAccessException.class)
+  @ResponseBody
+  public ResultVO illegalAccessException(IllegalAccessException e) {
+    log.error("illegalAccessException.getMessage=>{}",e.getMessage());
+    log.error("illegalAccessException.getCause.getCause.getMessage=>{}",e.getCause().getCause().getMessage());
+    throw new CoreException(ResultEnum.FAILURE.getCode(), ResultEnum.FAILURE.getMessage());
   }
 }

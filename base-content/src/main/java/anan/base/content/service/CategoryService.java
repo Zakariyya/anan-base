@@ -3,6 +3,8 @@ package anan.base.content.service;
 import anan.base.content.form.CategoryForm;
 import anan.base.content.orm.Category;
 import anan.base.core.orm.ResponseResult;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -11,6 +13,8 @@ import java.util.List;
  * Created by anan on 2018/8/24.
  */
 public interface CategoryService {
+
+  Page<Category> findAll(Pageable pageable);
 
   List<Category> findAll();
 

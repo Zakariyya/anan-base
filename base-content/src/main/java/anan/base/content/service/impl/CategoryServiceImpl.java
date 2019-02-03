@@ -10,6 +10,8 @@ import anan.base.core.orm.ResponseResult;
 import anan.base.core.repository.DictOptionRepository;
 import anan.base.core.util.VerifyForm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +33,11 @@ public class CategoryServiceImpl implements CategoryService {
 
   @Autowired
   private VerifyForm verifyForm;
+
+  @Override
+  public Page<Category> findAll(Pageable pageable) {
+    return categoryRepository.findAll(pageable);
+  }
 
   @Override
   public List<Category> findAll() {

@@ -37,7 +37,7 @@ public class Category implements Serializable {
   @Column(name="parent_id")
   private Category parent;
 
-  @JoinColumn(name="content_category_type")
+  @JoinColumn(name="category_type")
   @ManyToOne(cascade = CascadeType.REFRESH, optional = true, fetch = FetchType.EAGER)
   private DictOption categoryType;
 
