@@ -24,6 +24,7 @@
         <module>base-comment</module>
         <module>base-content</module>
         <module>base-auth</module>
+        <module>base-rbac</module>
         <!--<module>aspectauth</module>-->
         <!--<module>authshiro</module>-->
     </modules>

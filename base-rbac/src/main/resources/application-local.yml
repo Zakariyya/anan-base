@@ -1,0 +1,20 @@
+spring:
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        username: root
+        password: 123456
+        url: jdbc:mysql://127.0.0.1:3306/springboot?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT
+    jpa:
+        show-sql: true
+    jackson:
+        default-property-inclusion: ALWAYS
+        serialization:
+            WRITE_DATES_AS_TIMESTAMPS: true
+    aop:
+        auto: true # Add @EnableAspectJAutoProxy.
+        proxy-target-class: true  # Whether subclass-based (CGLIB) proxies are to be created (true) as
+server:
+    port: 8011
+    servlet:
+        context-path: /rbac
+    

@@ -27,46 +27,46 @@ public class AuthUserController {
 	private UserService userService;
 
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public DataResult<List<UserInfoModel>> findAll() {
-		return new DataResult<>(userService.select());
+	public ResultVO<List<UserInfoModel>> findAll() {
+		return new ResultVO<>(userService.select());
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public DataResult<UserInfoModel> find(@PathVariable("id") Integer id) {
-		return new DataResult<>(userService.select(id));
+	public ResultVO<UserInfoModel> find(@PathVariable("id") Integer id) {
+		return new ResultVO<>(userService.select(id));
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public DataResult<Object> add(@RequestBody User user) {
+	public ResultVO<Object> add(@RequestBody User user) {
 		int count = userService.create(user);
-		return new DataResult<>().setSuccess(count > 0);
+		return new ResultVO<>().setSuccess(count > 0);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = {
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public DataResult<Object> delete(@PathVariable("id") Integer id) {
+	public ResultVO<Object> delete(@PathVariable("id") Integer id) {
 		int count = userService.delete(id);
-		return new DataResult<>().setSuccess(count > 0);
+		return new ResultVO<>().setSuccess(count > 0);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public DataResult<Object> update(@PathVariable("id") Integer id, @RequestBody User user) {
+	public ResultVO<Object> update(@PathVariable("id") Integer id, @RequestBody User user) {
 		int count = userService.updateProperty(user);
-		return new DataResult<>().setSuccess(count > 0);
+		return new ResultVO<>().setSuccess(count > 0);
 	}
 
 	@RequestMapping(value = "/{id}/role", method = RequestMethod.GET, produces = {
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public DataResult<Role> getRole(@PathVariable("id") Integer id) {
-		return new DataResult<Role>(userService.selectRole(id));
+	public ResultVO<Role> getRole(@PathVariable("id") Integer id) {
+		return new ResultVO<Role>(userService.selectRole(id));
 	}
 
 	@RequestMapping(value = "/{id}/password", method = RequestMethod.PUT, produces = {
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public DataResult<Object> updatePassword(@PathVariable("id") Integer id, @RequestBody PasswordModel passwordModel) {
+	public ResultVO<Object> updatePassword(@PathVariable("id") Integer id, @RequestBody PasswordModel passwordModel) {
 		passwordModel.setUserId(id);
 		int count = userService.updatePassword(passwordModel);
-		return new DataResult<>().setSuccess(count > 0);
+		return new ResultVO<>().setSuccess(count > 0);
 	}
 
 	/**
@@ -75,15 +75,15 @@ public class AuthUserController {
 	 */
 	@RequestMapping(value = "/{id}/role", method = RequestMethod.PUT, produces = {
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public DataResult<Object> updateRole(@PathVariable("id") Integer id, @RequestBody Role role) {
+	public ResultVO<Object> updateRole(@PathVariable("id") Integer id, @RequestBody Role role) {
 		int count = userService.updateRole(id, role);
-		return new DataResult<>().setSuccess(count > 0);
+		return new ResultVO<>().setSuccess(count > 0);
 	}
 	
 	@RequestMapping(value = "/signin", method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public DataResult<Object> signin(@RequestBody User user) {
+	public ResultVO<Object> signin(@RequestBody User user) {
 		int count = userService.create(user);
-		return new DataResult<>().setSuccess(count > 0);
+		return new ResultVO<>().setSuccess(count > 0);
 	}
 
 }
